@@ -25,19 +25,426 @@
 17) Language.SPIRV.Util.Graph
 
 
+```
+-----------------------------------------------------------------------------
+
+module Language.SPIRV
+  module Language.SPIRV.Types
+  module Language.SPIRV.Binary
+  module Language.SPIRV.Pretty
+  module Language.SPIRV.Analyze
+  module Language.SPIRV.Layout
+  module Language.SPIRV.Build
+  module Language.SPIRV.Transform
+
+-----------------------------------------------------------------------------
+
+module Language.SPIRV.Config
+  module Language.SPIRV.Config.Decode
+  module Language.SPIRV.Config.Grammar
+
+module Language.SPIRV.Config.Decode
+  configDecode :: Decode
+
+module Language.SPIRV.Config.Grammar
+  configInstGrammar :: InstGrammar
+  configExtInstGrammars :: Map Name ExtInstGrammar
+
+-----------------------------------------------------------------------------
+
+module Language.SPIRV.Binary
+  encode :: Module -> L.ByteString
+  decode :: L.ByteString -> Module
+  decodeWith :: Decode -> L.ByteString -> Module
+
+module Language.SPIRV.Pretty
+  pretty :: Module -> Doc
+
+-----------------------------------------------------------------------------
+
+module Language.SPIRV.Layout
+  layout :: Context -> Result Module
+
+module Language.SPIRV.Analyze
+  analyze :: Module -> Result Context
+
+module Language.SPIRV.Build
+  build :: Header -> Build a -> (a, Context)
+  type Build a
+
+module Language.SPIRV.Transform
+  type Transform = Module -> Result Module
+  renumberIdsFrom :: WORD -> Transform
+
+-----------------------------------------------------------------------------
+
+module Language.SPIRV.Util.Graph
+  type Graph
+  domSort :: Graph -> [Int]
+  topoScc :: Graph -> [IntSet]
+  -- ...
+
+-----------------------------------------------------------------------------
+
+module Language.SPIRV.Types
+  module Language.SPIRV.Types.Common
+  module Language.SPIRV.Types.Context
+  module Language.SPIRV.Types.Generic
+  module Language.SPIRV.Types.Grammar
+  module Language.SPIRV.Types.Core
+
+module Language.SPIRV.Types.Internal
+  -- | Lookup tables to decode binary SPIR-V.
+  data Decode = Decode
+    {decodeInst :: InstDecode
+    ,decodeExtInst :: Map Name ExtInstDecode} __D
+  data InstDecode = InstDecode
+    {instDecodeInst :: IntMap [OperandEncoding]
+    ,instDecodeInstIdResult :: IntMap [Int]
+    ,instDecodeInstIdResultType :: IntMap [Int]
+    ,instDecodeValEnum :: IntMap (IntMap [OperandEncoding])
+    ,instDecodeBitEnum :: IntMap [(WORD, [OperandEncoding])]} __D
+  data ExtInstDecode = ExtInstDecode
+    {extInstDecodeInst :: IntMap [OperandEncoding]} __D
+  data OperandEncoding
+    = ID
+    | LIT_1
+    | LIT_N
+    | LIT_S
+    | ENUM_VAL !Int
+    | ENUM_BIT !Int
+    | INST
+    | TUPLE [OperandEncoding]
+    | MAYBE OperandEncoding
+    | LIST OperandEncoding __D
+
+module Language.SPIRV.Types.Common
+  type WORD
+  type STRING
+  toString :: STRING -> String
+  type Name = STRING
+  type Error = STRING
+  type Errors = [STRING]
+  type Result a = Either Errors a
+
+module Language.SPIRV.Types.Context
+  type Context
+
+module Language.SPIRV.Types.Generic
+  data Module = Module
+    {moduleHeader :: Header
+    ,moduleGlobal :: [Instruction]
+    ,moduleFunctions :: [Function]} __D
+  data Header = Header
+    {headerMagic :: WORD
+    ,headerVersion :: WORD
+    ,headerGenerator :: WORD
+    ,headerIdBound :: WORD
+    ,headerSchema :: WORD} __D
+  data Function = Function
+    {functionOp :: Instruction
+    ,functionParams :: [Instruction]
+    ,functionBlocks :: [Block]} __D
+  data Block = Block
+    {blockLabel :: Id
+    ,blockSuccs :: [Id]
+    ,blockInsts :: [Instruction]} __D
+  type Instruction = ValEnum
+  type ValEnum = Enumerant
+  type BitEnum = [Enumerant]
+  type Enumerant = (WORD, [Operand])
+  data Operand
+    = IdO !Id
+    | LitO !Lit
+    | ValEnumO ValEnum
+    | BitEnumO BitEnum
+    | InstO Instruction __D
+  newtype Id = Id WORD __D
+  data Lit = Lit1 !WORD | LitN [WORD] | LitS STRING __D
+  data NumLit = Num1L !WORD | NumNL [WORD] __D
+  class TagOf a tag where
+    tagOf :: a -> tag
+  class OperandsOf a where
+    operandsOf :: a -> [Operand]
+  class IsOperand a where
+    toOperand :: a -> Operand
+    fromOperand :: Operand -> Maybe a
+  class IsLit a where
+    toLit :: a -> Lit
+    fromLit :: Lit -> Maybe a
+  instance TagOf ValEnum WORD where
+  instance TagOf BitEnum WORD where
+  instance OperandsOf Operand where
+  instance OperandsOf ValEnum where
+  instance OperandsOf BitEnum where
+  instance IsOperand Id where
+  instance IsOperand ValEnum where
+  instance IsOperand BitEnum where
+  instance IsOperand Lit where
+  instance IsOperand WORD where
+  instance IsOperand [WORD] where
+  instance IsOperand STRING where
+  instance IsOperand NumLit where
+  instance IsLit WORD where
+  instance IsLit [WORD] where
+  instance IsLit STRING where
+  instance IsLit NumLit where
+  instance IsString Operand where
+  instance IsString Lit where
+
+module Language.SPIRV.Types.Decode
+  type Decode
+
+module Language.SPIRV.Types.Grammar
+  -- | Build the @Decode@ datastructure from grammar.
+  grammarToDecode :: InstGrammar -> Map Name ExtInstGrammar -> Decode
+  -- | Specifies the core SPIR-V instructions and operands.
+  data InstGrammar = InstGrammar
+    {instGrammarMagicNumber :: WORD --"0x07230203",
+    ,instGrammarMajorVersion :: Word8
+    ,instGrammarMinorVersion :: Word8
+    ,instGrammarRevision :: WORD
+    ,instGrammarInsts :: [InstSpec]
+    ,instGrammarOperands :: [OperandSpec]} __D
+  -- | Specified an external instruction set.
+  data ExtInstGrammar = ExtInstGrammar
+    {extInstGrammarVersion :: WORD
+    ,extInstGrammarRevision :: WORD
+    ,extInstGrammarInsts :: [InstSpec]} __D
+  -- | Specifiies a single instruction.
+  data InstSpec = InstSpec
+    {instSpecName :: Name
+    ,instSpecOpCode :: WORD
+    ,instSpecIdResultIxs :: [Int]
+    ,instSpecIdResultTypeIxs :: [Int]
+    ,instSpecOperands :: [OperandEncoding]
+    ,instSpecCapabilities :: [STRING]} __D
+  -- | Specifies an operand type.
+  data OperandSpec
+    = BasicOperandSpec Name X.OperandEncoding
+    | CompositeOperandSpec Name [OperandEncoding]
+    | ValEnumOperandSpec Name [(Name, WORD, [OperandEncoding], [STRING])]
+    | BitEnumOperandSpec Name [(Name, WORD, [OperandEncoding], [STRING])] __D
+  -- | Specifies the encoding of an operand field in either an instruction
+  -- or an operand type.
+  data OperandEncoding
+    = ONE Name
+    | MAYBE OperandEncoding
+    | LIST OperandEncoding __D
+  instance Ppr OperandEncoding where
+
+module Language.SPIRV.Types.Core
+  class Empty a where
+    empty :: a
+    isEmpty :: a -> Bool
+  class IsValEnum a where
+    valEnumKey :: a -> ValEnumKey
+    toValEnum :: a -> ValEnum
+    fromValEnum :: ValEnum -> Maybe a
+  class IsBitEnum a where
+    bitEnumKey :: a -> BitEnumKey
+    toBitEnum :: a -> BitEnum
+    fromBitEnum :: BitEnum -> Maybe a
+  class IsOperands a where
+    toOperands :: a -> [Operand]
+    fromOperands :: [Operand] -> Maybe a
+  data ValEnumKey
+    = OpVEK
+    | CapabilityVEK
+    | SourceLanguageVEK
+    | ExecutionModelVEK
+    | AddressingModelVEK
+    | MemoryModelVEK
+    | ExecutionModeVEK
+    | StorageClassVEK
+    | DimVEK
+    | SamplerAddressingModeVEK
+    | SamplerFilterModeVEK
+    | ImageFormatVEK
+    | ImageChannelOrderVEK
+    | ImageChannelDataTypeVEK
+    | FPRoundingModeVEK
+    | LinkageTypeVEK
+    | AccessQualifierVEK
+    | FunctionParameterAttributeVEK
+    | DecorationVEK
+    | BuiltInVEK
+    | ScopeVEK
+    | GroupOperationVEK
+    | KernelEnqueueFlagsVEK __D_BE
+  data BitEnumKey
+    = ImageOperandsBEK
+    | FPFastMathModeBEK
+    | SelectionControlBEK
+    | LoopControlBEK
+    | FunctionControlBEK
+    | MemorySemanticsBEK
+    | MemoryAccessBEK
+    | KernelProfilingInfoBEK __D_BE
+  type LiteralInteger = WORD
+  type LiteralString = STRING
+  type LiteralContextDependentNumber = NumLit
+  type IdRef = Id
+  type IdResult = Id
+  type IdResultType = Id
+  type IdScope = Id
+  type IdMemorySemantics = Id
+  type IdFunctionType = Id
+  type IdLabel = Id
+  type LiteralSpecConstantOpInteger = LiteralInteger
+  type LiteralExtInstInteger = LiteralInteger
+  type PairIdRefIdRef = (IdRef, IdRef)
+  type PairIdRefLiteralInteger = (IdRef, LiteralInteger)
+  type PairLiteralIntegerIdRef = (LiteralInteger, IdRef)
+  data Op = ..
+  data ImageOperands = ..
+  data FPFastMathMode = ..
+  data SelectionControl = ..
+  data LoopControl = ..
+  data FunctionControl = ..
+  data MemorySemantics = ..
+  data MemoryAccess = ..
+  data KernelProfilingInfo = ..
+  data ExecutionMode = ..
+  data Decoration = ..
+  data Capability = ..
+  data SourceLanguage = ..
+  data ExecutionModel = ..
+  data AddressingModel = ..
+  data MemoryModel = ..
+  data StorageClass = ..
+  data Dim = ..
+  data SamplerAddressingMode = ..
+  data SamplerFilterMode = ..
+  data ImageFormat = ..
+  data ImageChannelOrder = ..
+  data ImageChannelDataType = ..
+  data FPRoundingMode = ..
+  data LinkageType = ..
+  data AccessQualifier = ..
+  data FunctionParameterAttribute = ..
+  data BuiltIn = ..
+  data Scope = ..
+  data GroupOperation = ..
+  data KernelEnqueueFlags = ..
+  instance Empty FPFastMathMode
+  instance Empty FunctionControl
+  instance Empty ImageOperands
+  instance Empty KernelProfilingInfo
+  instance Empty LoopControl
+  instance Empty MemoryAccess
+  instance Empty MemorySemantics
+  instance Empty SelectionControl
+  instance IsBitEnum FPFastMathMode
+  instance IsBitEnum FunctionControl
+  instance IsBitEnum ImageOperands
+  instance IsBitEnum KernelProfilingInfo
+  instance IsBitEnum LoopControl
+  instance IsBitEnum MemoryAccess
+  instance IsBitEnum MemorySemantics
+  instance IsBitEnum SelectionControl
+  instance IsOperand AccessQualifier
+  instance IsOperand AddressingModel
+  instance (IsOperand a, IsOperand b) => IsOperands (a, b)
+  instance (IsOperand a, IsOperand b) => IsOperands [(a, b)]
+  instance (IsOperand a) => IsOperands (Maybe a)
+  instance IsOperand BuiltIn
+  instance IsOperand Capability
+  instance IsOperand Decoration
+  instance IsOperand Dim
+  instance IsOperand ExecutionMode
+  instance IsOperand ExecutionModel
+  instance IsOperand FPFastMathMode
+  instance IsOperand FPRoundingMode
+  instance IsOperand FunctionControl
+  instance IsOperand FunctionParameterAttribute
+  instance IsOperand GroupOperation
+  instance IsOperand ImageChannelDataType
+  instance IsOperand ImageChannelOrder
+  instance IsOperand ImageFormat
+  instance IsOperand ImageOperands
+  instance IsOperand KernelEnqueueFlags
+  instance IsOperand KernelProfilingInfo
+  instance IsOperand LinkageType
+  instance IsOperand LoopControl
+  instance IsOperand MemoryAccess
+  instance IsOperand MemoryModel
+  instance IsOperand MemorySemantics
+  instance IsOperand Op
+  instance IsOperands AccessQualifier
+  instance IsOperands AddressingModel
+  instance IsOperand SamplerAddressingMode
+  instance IsOperand SamplerFilterMode
+  instance IsOperands BitEnum
+  instance IsOperands BuiltIn
+  instance IsOperands Capability
+  instance IsOperand Scope
+  instance IsOperands Decoration
+  instance IsOperands Dim
+  instance IsOperand SelectionControl
+  instance IsOperands ExecutionMode
+  instance IsOperands ExecutionModel
+  instance IsOperands FPFastMathMode
+  instance IsOperands FPRoundingMode
+  instance IsOperands FunctionControl
+  instance IsOperands FunctionParameterAttribute
+  instance IsOperands GroupOperation
+  instance IsOperands Id
+  instance IsOperands [Id]
+  instance IsOperands ImageChannelDataType
+  instance IsOperands ImageChannelOrder
+  instance IsOperands ImageFormat
+  instance IsOperands ImageOperands
+  instance IsOperands KernelEnqueueFlags
+  instance IsOperands KernelProfilingInfo
+  instance IsOperands LinkageType
+  instance IsOperands Lit
+  instance IsOperands LoopControl
+  instance IsOperands MemoryAccess
+  instance IsOperands MemoryModel
+  instance IsOperands MemorySemantics
+  instance IsOperands NumLit
+  instance IsOperands Op
+  instance IsOperand SourceLanguage
+  instance IsOperands SamplerAddressingMode
+  instance IsOperands SamplerFilterMode
+  instance IsOperands Scope
+  instance IsOperands SelectionControl
+  instance IsOperands SourceLanguage
+  instance IsOperands StorageClass
+  instance IsOperands STRING
+  instance IsOperand StorageClass
+  instance IsOperands ValEnum
+  instance IsOperands WORD
+  instance IsOperands [WORD]
+  instance IsValEnum AccessQualifier
+  instance IsValEnum AddressingModel
+  instance IsValEnum BuiltIn
+  instance IsValEnum Capability
+  instance IsValEnum Decoration
+  instance IsValEnum Dim
+  instance IsValEnum ExecutionMode
+  instance IsValEnum ExecutionModel
+  instance IsValEnum FPRoundingMode
+  instance IsValEnum FunctionParameterAttribute
+  instance IsValEnum GroupOperation
+  instance IsValEnum ImageChannelDataType
+  instance IsValEnum ImageChannelOrder
+  instance IsValEnum ImageFormat
+  instance IsValEnum KernelEnqueueFlags
+  instance IsValEnum LinkageType
+  instance IsValEnum MemoryModel
+  instance IsValEnum Op
+  instance IsValEnum SamplerAddressingMode
+  instance IsValEnum SamplerFilterMode
+  instance IsValEnum Scope
+  instance IsValEnum SourceLanguage
+  instance IsValEnum StorageClass
 
 
 
-
-
-
-
-
-
-
-
-
-
+-----------------------------------------------------------------------------
+```
 
 
 
