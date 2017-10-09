@@ -12,46 +12,47 @@ intermediate representation.
 
 ## Library Signature
 
-    signature LANGUAGE_SPIRV = sig
-    {
-      type Context;
-      data Config = Config
-        {configMagic :: !WORD
-        ,configVersion :: !WORD
-        ,configSchema :: !WORD};
-      type Result = Either Errors;
-      type Errors = [Error];
-      type Error;
-      context :: Config -> Result Context;
+```haskell
+signature LANGUAGE_SPIRV = sig
+{
+  type Context;
+  data Config = Config
+    {configMagic :: !WORD
+    ,configVersion :: !WORD
+    ,configSchema :: !WORD};
+  type Result = Either Errors;
+  type Errors = [Error];
+  type Error;
+  context :: Config -> Result Context;
 
-      --
-      -- (1)
-      --
-      type Module;
-      decode :: Context -> L.ByteString -> Result Module;
-      encode :: Context -> Module -> Result L.ByteString;
+  --
+  -- (1)
+  --
+  type Module;
+  decode :: Context -> L.ByteString -> Result Module;
+  encode :: Context -> Module -> Result L.ByteString;
 
-      --
-      -- (2)
-      --
-      type Build a;
-      build :: Context -> Build a -> Result (a, Module);
-      instance Monad Build;
-      instance Applicative Build;
-      instance Functor Build;
+  --
+  -- (2)
+  --
+  type Build a;
+  build :: Context -> Build a -> Result (a, Module);
+  instance Monad Build;
+  instance Applicative Build;
+  instance Functor Build;
 
-      --
-      -- (3)
-      --
-      data Strict = Strict | NonStrict;
-      validate :: Context -> Strict -> Module -> Result ();
+  --
+  -- (3)
+  --
+  data Strict = Strict | NonStrict;
+  validate :: Context -> Strict -> Module -> Result ();
 
-      --
-      -- (4)
-      --
-      strictify :: Context -> Module -> Result Module;
-    };
-
+  --
+  -- (4)
+  --
+  strictify :: Context -> Module -> Result Module;
+};
+```
 
 ## `ModInfo`
 
