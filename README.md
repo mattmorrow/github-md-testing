@@ -227,6 +227,10 @@ data Type       -- no IdResult
 -- }}}
 #if 0
 #endif
+
+
+
+
 #if 0
 Boolean type: The type returned by OpTypeBool.
 Integer type: Any width signed or unsigned type from OpTypeInt. By convention, the lowest-order bit will be referred to as bit-number 0, and the highest-order bit as bit-number Width - 1.
