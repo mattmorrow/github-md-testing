@@ -57,16 +57,6 @@ signature LANGUAGE_SPIRV = sig
 ## `ModInfo`
 
 ```haskell
-data ModuleGraphs a = ModuleGraphs
-  {
-   mgs_IdPart       :: IdPart ()
-  ,mgs_ID_T_Pointer :: IxMap ID ()
-  ,mgs_ID_DG        :: Graph ID   -- (DecoGroup, _)
-  ,mgs_ID_T_C       :: Graph ID   -- (Type|Constant,Type|Constant)
-  ,mgs_ID_VG        :: Graph ID   -- (GVar,GVar)
-  ,mgs_ID_B         :: Graph ID   -- (Block,Block)
-  ,mgs_ID_F_Entry   :: IxMap ID (Ix ID)
-  }
 data IdKind
   = IDK_X     -- ^ SSA Name
   | IDK_VL    -- ^ OpVariable (Local)
@@ -95,33 +85,6 @@ data IdPart a = IdPart
   ,idPartS    :: IxMap ID a   -- ^ OpString
   ,idPartEII  :: IxMap ID a   -- ^ OpExtInstImport
   }
-```
-
-
-```haskell
-shareSingleOutputCyclic
-  :: (Ord k)
-  => IxMap a (k, [Ix a])
-  -> Partition a a
-```
-
-```haskell
-shareMultiOutputCyclic
-  :: (Ord k)
-  => IxMap a (k, [Ix b], [Ix b])
-  -> (Partition a a, Partition b b)
-shareMultiOutputCyclic a
-  | (b,c,d) <- step1 a
-  , e <- shareSingleOutputCyclic d
-  = step3 (b,c,e)
-  where step1
-          :: IxMap a (k, [Ix b], [Ix b])
-          -> (Trans () a, Trans () b, IxMap () ((Int, k), [Ix ()]))
-        step3
-          :: (Trans () a, Trans () b, Partition () ())
-          -> (Partition a a, Partition b b)
-        step1 = __FIXME("shareMultiOutputCyclic_step1")
-        step3 = __FIXME("shareMultiOutputCyclic_step3")
 ```
 
 
@@ -162,6 +125,11 @@ shareMultiOutputCyclic a
 ## `strictify`
 
 ```haskell
+shareSingleOutputCyclic :: (Ord k) => IxMap a (k, [Ix a]) -> Partition a a
+shareMultiOutputCyclic  :: (Ord k) => IxMap a (k, [Ix b], [Ix b]) -> (Partition a a, Partition b b)
+```
+
+```haskell
 -- | Given the basicblock graph for a function, along with the entry block,
 -- return the nodes sorted in a way that respects dominance.
 layoutBB :: Graph ID -> Ix ID -> Result [Ix ID]
@@ -185,6 +153,19 @@ layoutGV :: Graph -> Result [Node]
 -- all @OpDecorationGroup@s are allowed to preceed all @OpGroupDecorate@ and
 -- @OpGroupMemberDecorate@s, and this is what we do.
 layoutDG :: Graph -> Result [(Node, [Node])]
+```
+
+```haskell
+data ModuleGraphs a = ModuleGraphs
+  {
+   mgs_IdPart       :: IdPart ()
+  ,mgs_ID_T_Pointer :: IxMap ID ()
+  ,mgs_ID_DG        :: Graph ID   -- (DecoGroup, _)
+  ,mgs_ID_T_C       :: Graph ID   -- (Type|Constant,Type|Constant)
+  ,mgs_ID_VG        :: Graph ID   -- (GVar,GVar)
+  ,mgs_ID_B         :: Graph ID   -- (Block,Block)
+  ,mgs_ID_F_Entry   :: IxMap ID (Ix ID)
+  }
 ```
 
 
