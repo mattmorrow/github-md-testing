@@ -8,7 +8,7 @@ intermediate representation.
 1) Decode/encode binary SPIR-V files to/from a module representation.
 2) Provide an API to build SPIR-V modules.
 3) Test for strict or nonstrict validity of SPIR-V modules.
-4) Transform nonstrictly valid modules into strictl valide ones.
+4) Transform nonstrictly valid modules into strictly valide ones.
 
 ## Library Signature
 
