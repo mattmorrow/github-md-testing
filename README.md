@@ -73,6 +73,18 @@
 
 * language-spirv/NOTES_README.md
 
+* OPINFO.hs
+    1)
+    2)
+    3)
+* MODEL.hs
+    1) Build/MEnv
+    2) MEnv2
+    3) RHS (!!!!!!!!!!!)
+* WORK.hs
+    1) HELLA cpp macros INSTANCE_xxx(..)
+    2) AnalyzeEnv{1,2}
+    3) LayoutEnv{1,2}
 
 * language-spirv/README.md
     * Objectives

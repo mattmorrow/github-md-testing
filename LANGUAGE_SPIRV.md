@@ -8,7 +8,7 @@ intermediate representation.
 1) Decode/encode binary SPIR-V files to/from a module representation.
 2) Provide an API to build SPIR-V modules.
 3) Test for strict or nonstrict validity of SPIR-V modules.
-4) Transform nonstrictly valid modules into strictly valide ones.
+4) Transform nonstrictly valid modules into strictly valid ones.
 
 ## Library Signature
 
@@ -52,7 +52,15 @@ intermediate representation.
       strictify :: Context -> Module -> Result Module;
     };
 
-## Strict and Nonstrict Validity
+
+## `decode`/`encode`
+
+
+
+
+
+
+## `build`
 
 
 
@@ -61,7 +69,57 @@ intermediate representation.
 
 
 
+## `validate`
 
+### Strict and Nonstrict Validity
+
+* Strict Validity = The module is valid by the rules of SPIR-V.
+
+* Nonstrict Validity = The following rules of SPIR-V are relaxed:
+    1)
+    2)
+    3)
+    4)
+    5)
+
+
+
+
+
+
+
+
+## `strictify`
+
+```haskell
+-- | Given the basicblock graph for a function, along with the entry block,
+-- return the nodes sorted in a way that respects dominance.
+layoutBB :: Graph -> Node -> Result [Node]
+layoutBB g root = __FIXME("layoutBB")
+
+-- | Toposorts the SCCs of the {Type,Constant} graph, asserts any cyclic
+-- SCC contains ONLY Types and NO Constants, asserts that all cycles pass
+-- through an @OpTypePointer@ node, and inserts @OpForwardPointer@s as
+-- appropriate for cyclic SCCs.
+layoutTC
+  :: Graph    -- Types and Constants
+  -> NodeSet  -- ALL Types
+  -> NodeSet  -- ONLY Ptr Types
+  -> Result ([Node], [Node])
+layoutTC g allTs ptrTs = __FIXME("layoutTC")
+
+-- | Asserts the GlobalVariable graph is acyclic, and returns a toposort.
+layoutGV :: Graph -> Result [Node]
+layoutGV = __FIXME("layoutGV")
+
+-- | Asserts that the DeclarationGroup graph is acyclic, returns
+-- DecorationGroups flattened in the sense that no DecorationGroup contains
+-- another DecorationGroup. The returned list's order does not matter since
+-- all @OpDecorationGroup@s are allowed to preceed all @OpGroupDecorate@ and
+-- @OpGroupMemberDecorate@s, and this is what we do.
+layoutDG :: Graph -> Result [(Node, [Node])]
+layoutDG = __FIXME("layoutDG")
+```
 
 
 
