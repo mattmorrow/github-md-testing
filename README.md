@@ -3,26 +3,267 @@
 
 
 
-## `language-spirv`
+## Libraries
+
+1) mm-compiler-base
+2) language-spirv
 
 
-1) Language.SPIRV
-2) Language.SPIRV.Types
-3) Language.SPIRV.Types.Internal
-4) Language.SPIRV.Types.Common
-5) Language.SPIRV.Types.Context
-6) Language.SPIRV.Types.Generic
-7) Language.SPIRV.Types.Grammar
-8) Language.SPIRV.Types.Core
-9) Language.SPIRV.Config
-10) Language.SPIRV.Config.Decode
-11) Language.SPIRV.Config.Grammar
-12) Language.SPIRV.Binary
-13) Language.SPIRV.Pretty
-14) Language.SPIRV.Build
-15) Language.SPIRV.Analyze
-16) Language.SPIRV.Transform
-17) Language.SPIRV.Util.Graph
+
+## NOTES
+
+* github-md-testing/README.md
+    * (this file)
+
+* NOTES.md
+    * signature COMPILER
+    * signature DRIVER
+    * signature IR
+    * signature ExternalIR
+    * signature PASS
+    * signature COSTMODEL
+    * signature ANALYSIS
+    * signature TRANSFORM
+    * signature A_GVN_SCVP
+    * signature XXX_A_GVN
+    * signature XXX_A_SCVP
+    * signature GVN
+    * signature GlobalValueNumbering
+    * signature SCP
+    * signature SparseConditionalPropagation
+    * signature A_MemSSA
+    * signature A_DomPDomTree
+    * signature A_Liveness
+    * signature A_Alias_Alias
+    * signature A_Alias_PointsTo
+    * signature A_Mem_ReachingDefs
+    * signature A_LNF
+    * signature X_FRE
+    * signature X_PRE
+    * signature X_JumpThread
+    * signature X_Specialize
+    * signature X_Inline
+    * signature X_Outline
+    * signature X_MemSSA_Into
+    * signature X_MemSSA_OutOf
+    * signature C_GVN_SCVP
+    * signature C_FRE
+    * signature C_PRE
+    * signature C_JumpThread
+    * signature C_Inline_Outline
+    * signature TOTAL_COSTMODEL
+    * signature PARTIAL_COSTMODEL
+    * signature COSTMODEL_Z
+    * signature COSTMODEL_R
+    * signature COSTMODEL_Z2
+    * signature COSTMODEL_R2
+
+* README_mm-compiler.md
+    * signature MM_COMPILER_LIB
+    * signature XXX
+    * doItAll :: CFG -> m ()
+
+* ALL_mm-compiler_MM_other_files_too.hs
+    * MM.Compiler.Types
+
+* LEM_LESSON.md
+* OPS.md
+* FIR.md
+* SPIRV-Tools.md
+
+* language-spirv/NOTES_README.md
+
+
+* language-spirv/README.md
+    * Objectives
+    * Library Signature
+    * TOORG
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+* Things
+    1) Acyclic to one-leveled
+        1) ({DG},_) -> ({DG},not({DG}))
+    2) DFA minimization
+        1) ({DG},not({DG}))
+        2) {T,C,U}^2
+    2) Sort by DomTree RevPostDFN
+        1) {B}^2
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+
+
+-- //////////////////////////////////////
+-- //////////////////////////////////////
+-- //////////////////////////////////////
+data GraphsOfNote
+  = G_Type_Constant         -- only Types can be in SCCs. @OpTypeForwardPointer@.
+  | G_GlobalVariable        -- assert(ACYCLIC)
+  | G_DecorationGroup       -- assert(ACYCLIC)
+  | G_Label                 -- domSort(BBs)
+  __D_BE
+idLinks :: [(IdKind, [IdKind])]
+idLinks =
+  [(SSAIdK,              [SSAIdK,LabelIdK,FunParamIdK,FunctionIdK,GlobalVariableIdK,ConstantIdK,TypeIdK,ExtInstImportIdK])
+  ,(LabelIdK,            [LabelIdK])
+  ,(FunParamIdK,         [TypeIdK])
+  ,(FunctionIdK,         [TypeIdK])
+  ,(GlobalVariableIdK,   [TypeIdK,ConstantIdK,GlobalVariableIdK])
+  ,(ConstantIdK,         [TypeIdK,ConstantIdK])
+  ,(TypeIdK,             [TypeIdK,ConstantIdK])
+  ,(DecorationGroupIdK,  [SSAIdK,LabelIdK,FunParamIdK,FunctionIdK,GlobalVariableIdK,ConstantIdK,TypeIdK,DecorationGroupIdK,StringIdK,ExtInstImportIdK])
+  ,(StringIdK,           [])
+  ,(ExtInstImportIdK,    [])]
+-- //////////////////////////////////////
+-- //////////////////////////////////////
+-- //////////////////////////////////////
+data ConstantTag = ConstantTag __D_BE
+data ConstantKey = ConstantKey __D
+data Constant = Constant __D
+data TypeTag    -- nothing
+-- {{{
+  = TypeVoidTag
+  | TypeBoolTag
+  | TypeIntTag
+  | TypeFloatTag
+  | TypeVectorTag
+  | TypeMatrixTag
+  | TypeArrayTag
+  | TypeRuntimeArrayTag
+  | TypeStructTag
+  | TypeOpaqueTag
+  | TypePointerTag
+  | TypeFunctionTag
+  | TypeImageTag
+  | TypeSamplerTag
+  | TypeSampledImageTag
+  | TypeEventTag
+  | TypeDeviceEventTag
+  | TypeReserveIdTag
+  | TypeQueueTag
+  | TypePipeTag
+  | TypePipeStorageTag
+  | TypeNamedBarrierTag
+  __D
+-- }}}
+data TypeKey    -- no Ids
+-- {{{
+  = TypeVoidKey
+  | TypeBoolKey
+  | TypeIntKey !WORD !WORD
+  | TypeFloatKey !WORD
+  | TypeVectorKey !WORD
+  | TypeMatrixKey !WORD
+  | TypeArrayKey
+  | TypeRuntimeArrayKey
+  | TypeStructKey
+  | TypeOpaqueKey Name
+  | TypePointerKey StorageClass
+  | TypeFunctionKey
+  | TypeImageKey Dim !WORD !WORD !WORD !WORD ImageFormat (Maybe AccessQualifier)
+  | TypeSamplerKey
+  | TypeSampledImageKey
+  | TypeEventKey
+  | TypeDeviceEventKey
+  | TypeReserveIdKey
+  | TypeQueueKey
+  | TypePipeKey AccessQualifier
+  | TypePipeStorageKey
+  | TypeNamedBarrierKey
+  __D
+-- }}}
+data Type       -- no IdResult
+-- {{{
+  = TypeVoid
+  | TypeBool
+  | TypeInt             !Int  !Int
+  | TypeFloat           !Int
+  | TypeVector          Id   !Int
+  | TypeMatrix          Id   !Int
+  | TypeArray           Id   Id{-Constant:XXXXXXXXXXX-}
+  | TypeRuntimeArray    Id
+  | TypeStruct          [Id]
+  | TypeOpaque          Name
+  | TypePointer         StorageClass  Id
+  | TypeFunction        Id           [Id]
+  -- TypeImage           Id Dim !WORD !WORD !WORD !WORD ImageFormat (Maybe AccessQualifier)
+  | TypeImage
+      {typeImageSampledType :: Id
+      ,typeImageDim :: Dim
+      ,typeImageDepth :: !WORD
+      ,typeImageArrayed :: !WORD{-{0,1}-}
+      ,typeImageMS :: !WORD{-{0,1}-}
+      ,typeImageSampled :: !WORD{-{0,1,2}-}
+      ,typeImageFormat :: ImageFormat
+      ,typeImageAccess :: Maybe AccessQualifier}
+  | TypeSampler
+  | TypeSampledImage    Id
+  | TypeEvent
+  | TypeDeviceEvent
+  | TypeReserveId
+  | TypeQueue
+  | TypePipe            AccessQualifier
+  | TypePipeStorage
+  | TypeNamedBarrier
+  __D
+-- }}}
+#if 0
+#endif
+#if 0
+Boolean type: The type returned by OpTypeBool.
+Integer type: Any width signed or unsigned type from OpTypeInt. By convention, the lowest-order bit will be referred to as bit-number 0, and the highest-order bit as bit-number Width - 1.
+Floating-point type: Any width type from OpTypeFloat.
+Numerical type: An integer type or a floating-point type.
+Scalar: A single instance of a numerical type or Boolean type. Scalars will also be called components when being discussed either by themselves or in the context of the contents of a vector.
+Vector: An ordered homogeneous collection of two or more scalars. Vector sizes are quite restrictive and dependent on the execution model.
+Matrix: An ordered homogeneous collection of vectors. When vectors are part of a matrix, they will also be called columns. Matrix sizes are quite restrictive and dependent on the execution model.
+Array: An ordered homogeneous collection of any non-void-type objects. When an object is part of an array, it will also be called an element. Array sizes are generally not restricted.
+Structure: An ordered heterogeneous collection of any non-void types. When an object is part of a structure, it will also be called a member.
+Aggregate: A structure or an array.
+Composite: An aggregate, a matrix, or a vector.
+Image: A traditional texture or image; SPIR-V has this single name for these. An image type is declared with OpTypeImage. An image does not include any information about how to access, filter, or sample it.
+Sampler: Settings that describe how to access, filter, or sample an image. Can come either from literal declarations of settings or be an opaque reference to externally bound settings. A sampler does not include an image.
+Sampled Image: An image combined with a sampler, enabling filtered accesses of the image’s contents.
+Concrete Type: A numerical scalar, vector, or matrix type, or OpTypePointer when using a Physical addressing model, or any aggregate containing only these types.
+Abstract Type: An OpTypeVoid or OpTypeBool, or OpTypePointer when using the Logical addressing model, or any aggregate type containing any of these.
+Opaque Type: A type that is, or contains, or points to, or contains pointers to, any of the following types:
+    OpTypeImage
+    OpTypeSampler
+    OpTypeSampledImage
+    OpTypeOpaque
+    OpTypeEvent
+    OpTypeDeviceEvent
+    OpTypeReserveId
+    OpTypeQueue
+    OpTypePipe
+    OpTypeForwardPointer
+#endif
+
+
+
+
+
+
+
+
 
 
 ```
