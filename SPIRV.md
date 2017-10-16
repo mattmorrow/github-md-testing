@@ -275,6 +275,95 @@ data IdKind
             1) `mustBeExactlyEqual :: [DecorationTAG]`
             2) `dontMatterForEquality := allDecorationTags\\mustBeExactlyEqual`
 
+* `Decoration`
+    1) `DecorationFuncParamAttr FunctionParameterAttribute`
+        1) `Zext`
+        2) `Sext`
+        3) `ByVal`
+        4) `Sret`
+        5) `NoAlias`
+        6) `NoCapture`
+        7) `NoWrite`
+        8) `NoReadWrite`
+    2) `DecorationLinkageAttributes STRING LinkageType`
+        1) `Export`
+        2) `Import`
+    3) `DecorationFPRoundingMode FPRoundingMode`
+        1) `RTE`
+        2) `RTZ`
+        3) `RTP`
+        4) `RTN`
+    4) `DecorationFPFastMathMode FPFastMathMode`
+        1) FPFastMathMode
+            1) `NotNaN      ::  Bool`
+            2) `NotInf      ::  Bool`
+            3) `NSZ         ::  Bool`
+            4) `AllowRecip  ::  Bool`
+            5) `Fast        ::  Bool`
+    5) `DecorationBuiltIn BuiltIn`
+            1) ...
+            2) ...
+            3) ...
+    6) DecorationSpecId WORD
+    7) Decorations with embedded `Id`s:
+        1) `DecorationAlignmentId Id`
+        2) `DecorationMaxByteOffsetId Id`
+    8) .
+        * `DecorationAlignment WORD`
+        * `DecorationMaxByteOffset WORD`
+        * `DecorationAlignmentId Id`
+        * `DecorationMaxByteOffsetId Id`
+    9) Type Layout Specification
+        * `CapabilityKernel`
+            * `DecorationCPacked`
+        * `CapabilityShader`
+            * `DecorationGLSLPacked`
+            * `DecorationGLSLShared`
+
+TOORG:
+
+```haskell
+DecorationRelaxedPrecision
+DecorationSaturatedConversion
+DecorationBlock
+DecorationBufferBlock
+DecorationRowMajor
+DecorationColMajor
+DecorationArrayStride                  WORD
+DecorationMatrixStride                 WORD
+DecorationNoPerspective
+DecorationFlat
+DecorationPatch
+DecorationCentroid
+DecorationSample
+DecorationInvariant
+DecorationRestrict
+DecorationAliased
+DecorationVolatile
+DecorationConstant
+DecorationCoherent
+DecorationNonWritable
+DecorationNonReadable
+DecorationUniform
+DecorationStream                       WORD
+DecorationLocation                     WORD
+DecorationComponent                    WORD
+DecorationIndex                        WORD
+DecorationBinding                      WORD
+DecorationDescriptorSet                WORD
+DecorationOffset                       WORD
+DecorationXfbBuffer                    WORD
+DecorationXfbStride                    WORD
+DecorationNoContraction
+DecorationInputAttachmentIndex         WORD
+DecorationExplicitInterpAMD
+DecorationOverrideCoverageNV
+DecorationPassthroughNV
+DecorationViewportRelativeNV
+DecorationSecondaryViewportRelativeNV  WORD
+```
+
+
 * Capability to Decorations possibly allowed:
     * NONE
         * Aliased
@@ -404,94 +493,6 @@ data IdKind
 ("PassthroughNV", 5250, [], ["GeometryShaderPassthroughNV"]),
 ("ViewportRelativeNV", 5252, [], ["ShaderViewportMaskNV"]),
 ("SecondaryViewportRelativeNV", 5256, [("LiteralInteger")], ["ShaderStereoViewNV"])
-```
-
-* `Decoration`
-    1) `DecorationFuncParamAttr FunctionParameterAttribute`
-        1) `Zext`
-        2) `Sext`
-        3) `ByVal`
-        4) `Sret`
-        5) `NoAlias`
-        6) `NoCapture`
-        7) `NoWrite`
-        8) `NoReadWrite`
-    2) `DecorationLinkageAttributes STRING LinkageType`
-        1) `Export`
-        2) `Import`
-    3) `DecorationFPRoundingMode FPRoundingMode`
-        1) `RTE`
-        2) `RTZ`
-        3) `RTP`
-        4) `RTN`
-    4) `DecorationFPFastMathMode FPFastMathMode`
-        1) FPFastMathMode
-            1) `NotNaN      ::  Bool`
-            2) `NotInf      ::  Bool`
-            3) `NSZ         ::  Bool`
-            4) `AllowRecip  ::  Bool`
-            5) `Fast        ::  Bool`
-    5) `DecorationBuiltIn BuiltIn`
-            1) ...
-            2) ...
-            3) ...
-    6) DecorationSpecId WORD
-    7) Decorations with embedded `Id`s:
-        1) `DecorationAlignmentId Id`
-        2) `DecorationMaxByteOffsetId Id`
-    8) .
-        * `DecorationAlignment WORD`
-        * `DecorationMaxByteOffset WORD`
-        * `DecorationAlignmentId Id`
-        * `DecorationMaxByteOffsetId Id`
-    9) Type Layout Specification
-        * `CapabilityKernel`
-            * `DecorationCPacked`
-        * `CapabilityShader`
-            * `DecorationGLSLPacked`
-            * `DecorationGLSLShared`
-
-TOORG:
-
-```haskell
-DecorationRelaxedPrecision
-DecorationSaturatedConversion
-DecorationBlock
-DecorationBufferBlock
-DecorationRowMajor
-DecorationColMajor
-DecorationArrayStride                  WORD
-DecorationMatrixStride                 WORD
-DecorationNoPerspective
-DecorationFlat
-DecorationPatch
-DecorationCentroid
-DecorationSample
-DecorationInvariant
-DecorationRestrict
-DecorationAliased
-DecorationVolatile
-DecorationConstant
-DecorationCoherent
-DecorationNonWritable
-DecorationNonReadable
-DecorationUniform
-DecorationStream                       WORD
-DecorationLocation                     WORD
-DecorationComponent                    WORD
-DecorationIndex                        WORD
-DecorationBinding                      WORD
-DecorationDescriptorSet                WORD
-DecorationOffset                       WORD
-DecorationXfbBuffer                    WORD
-DecorationXfbStride                    WORD
-DecorationNoContraction
-DecorationInputAttachmentIndex         WORD
-DecorationExplicitInterpAMD
-DecorationOverrideCoverageNV
-DecorationPassthroughNV
-DecorationViewportRelativeNV
-DecorationSecondaryViewportRelativeNV  WORD
 ```
 
 ## Op{Decorate{,Id},MemberDecorate} IdRef IdKind constraints given Decoration:
