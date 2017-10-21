@@ -266,7 +266,7 @@ data IdKind
         * <code-insns>
         * <decoration-insns>
 
-## `Decoration`
+## `Decoration`, `Capability`
 
 * CONSIDERATIONS
     1) `allowed :: Map IdKind [DecorationTAG]`
@@ -274,6 +274,49 @@ data IdKind
         1) Regarding EQUALITY of entities:
             1) `mustBeExactlyEqual :: [DecorationTAG]`
             2) `dontMatterForEquality := allDecorationTags\\mustBeExactlyEqual`
+
+* Profiles
+    * OpenCL
+        * Full Profile
+            * An OpenCL 1.2 Full Profile environment is guaranteed to support the following SPIR-V capabilities:
+                *  Address
+                *  Float16Buffer
+                *  Groups
+                *  Int64
+                *  Int16
+                *  Int8
+                *  Kernel
+                *  Linkage
+                *  Vector16
+            * The following capabilities may be optionally supported:
+                *  ImageBasic, if CL_DEVICE_IMAGE_SUPPORT is CL_TRUE
+                *  Float64, if the device supports double precision floating-point
+            * If ImageBasic is supported then the following capabilities must also be supported:
+                *  LiteralSampler
+                *  Sampled1D
+                *  Image1D
+                *  SampledBuffer
+                *  ImageBuffer
+        * Embedded Profile
+            * An OpenCL 1.2 Embedded Profile environment is guaranteed to support the following SPIR-V capabilities:
+                *  Address
+                *  Float16Buffer
+                *  Groups
+                *  Int16
+                *  Int8
+                *  Kernel
+                *  Linkage
+                *  Pipes
+                *  Vector16
+            * The following capabilities may be optionally supported:
+                *  ImageBasic, if CL_DEVICE_IMAGE_SUPPORT is CL_TRUE
+                *  Float64, if the device supports double precision floating-point
+            * If ImageBasic is supported then the following capabilities must also be supported:
+                *  LiteralSampler
+                *  Sampled1D
+                *  Image1D
+                *  SampledBuffer
+                *  ImageBuffer
 
 * `Decoration`
     1) `DecorationFuncParamAttr FunctionParameterAttribute`

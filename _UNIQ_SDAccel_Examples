@@ -1,0 +1,1221 @@
+; Bound: 8358
+; Generator: Khronos LLVM/SPIR-V Translator; 14
+; Schema: 0
+; SPIR-V
+; Version: 1.0
+
+OpBranchConditional %x %x %x
+
+OpBranch %x
+
+OpCapability Addresses
+OpCapability GenericPointer
+OpCapability Int16
+OpCapability Int64
+OpCapability Int8
+OpCapability Kernel
+OpCapability Linkage
+OpCapability Vector16
+
+OpControlBarrier %x %x %x
+
+OpCopyMemorySized %x %x %x Aligned 1
+
+OpDecorate %x Alignment 1
+OpDecorate %x Alignment 16
+OpDecorate %x Alignment 2
+OpDecorate %x Alignment 4
+OpDecorate %x Alignment 64
+OpDecorate %x Alignment 8
+OpDecorate %x BuiltIn GlobalInvocationId
+OpDecorate %x BuiltIn GlobalSize
+OpDecorate %x BuiltIn LocalInvocationId
+OpDecorate %x BuiltIn WorkgroupSize
+OpDecorate %x Constant
+OpDecorate %x FuncParamAttr NoAlias
+OpDecorate %x FuncParamAttr NoWrite
+OpDecorate %x FuncParamAttr Zext
+
+OpDecorate %x LinkageAttributes "__spirv_BuiltInGlobalInvocationId" Import
+OpDecorate %x LinkageAttributes "__spirv_BuiltInGlobalSize" Import
+OpDecorate %x LinkageAttributes "__spirv_BuiltInLocalInvocationId" Import
+OpDecorate %x LinkageAttributes "__spirv_BuiltInWorkgroupSize" Import
+-- {{{
+OpDecorate %x LinkageAttributes "AddRoundKey" Export
+OpDecorate %x LinkageAttributes "array_to_bus" Export
+OpDecorate %x LinkageAttributes "array_to_uint16" Export
+OpDecorate %x LinkageAttributes "bit_reader" Export
+OpDecorate %x LinkageAttributes "bit_writer" Export
+OpDecorate %x LinkageAttributes "boost_stage" Export
+OpDecorate %x LinkageAttributes "bus_to_array" Export
+OpDecorate %x LinkageAttributes "bus_to_short" Export
+OpDecorate %x LinkageAttributes "bus_to_u8" Export
+OpDecorate %x LinkageAttributes "C_INVALID_LINK" Export
+OpDecorate %x LinkageAttributes "compute" Export
+OpDecorate %x LinkageAttributes "convolution_operation" Export
+OpDecorate %x LinkageAttributes "copy_output" Export
+OpDecorate %x LinkageAttributes "copy_weight" Export
+OpDecorate %x LinkageAttributes "dev_sha1_transform" Export
+OpDecorate %x LinkageAttributes "filter" Export
+OpDecorate %x LinkageAttributes "find_next_min" Export
+OpDecorate %x LinkageAttributes "getBoost" Export
+OpDecorate %x LinkageAttributes "getBoostWindow" Export
+OpDecorate %x LinkageAttributes "getChannelMedian" Export
+OpDecorate %x LinkageAttributes "get_coef" Export
+OpDecorate %x LinkageAttributes "getMedian" Export
+OpDecorate %x LinkageAttributes "getMedianWindow" Export
+OpDecorate %x LinkageAttributes "getSketch" Export
+OpDecorate %x LinkageAttributes "input_stage" Export
+OpDecorate %x LinkageAttributes "int_to_char4" Export
+OpDecorate %x LinkageAttributes "is_bit_set" Export
+OpDecorate %x LinkageAttributes "median_stage" Export
+OpDecorate %x LinkageAttributes "multiple_bits_writer" Export
+OpDecorate %x LinkageAttributes "output_stage" Export
+OpDecorate %x LinkageAttributes "read_data" Export
+OpDecorate %x LinkageAttributes "read_ht_node" Export
+OpDecorate %x LinkageAttributes "read_word" Export
+OpDecorate %x LinkageAttributes "rsbox" Export
+OpDecorate %x LinkageAttributes "ShiftRowsInv" Export
+OpDecorate %x LinkageAttributes "short_to_bus" Export
+OpDecorate %x LinkageAttributes "sketch_stage" Export
+OpDecorate %x LinkageAttributes "sum_scan" Export
+OpDecorate %x LinkageAttributes "u8_to_bus" Export
+OpDecorate %x LinkageAttributes "uint16_to_array" Export
+OpDecorate %x LinkageAttributes "uint16_to_char_array" Export
+OpDecorate %x LinkageAttributes "uint_to_char_array" Export
+OpDecorate %x LinkageAttributes "write_data" Export
+OpDecorate %x LinkageAttributes "write_ht_node" Export
+OpDecorate %x LinkageAttributes "write_word" Export
+-- }}}
+
+-- {{{
+OpEntryPoint Kernel %x "adder"
+OpEntryPoint Kernel %x "affine_kernel"
+OpEntryPoint Kernel %x "bandwidth"
+OpEntryPoint Kernel %x "cnn"
+OpEntryPoint Kernel %x "decode"
+OpEntryPoint Kernel %x "dev_sha1_update"
+OpEntryPoint Kernel %x "dot_aos"
+OpEntryPoint Kernel %x "dot_soa"
+OpEntryPoint Kernel %x "encode"
+OpEntryPoint Kernel %x "fir_naive"
+OpEntryPoint Kernel %x "fir_shift_register"
+OpEntryPoint Kernel %x "krnl_aes_decrypt"
+OpEntryPoint Kernel %x "krnl_convolve"
+OpEntryPoint Kernel %x "krnl_sobel"
+OpEntryPoint Kernel %x "krnl_sum_scan"
+OpEntryPoint Kernel %x "krnl_vadd"
+OpEntryPoint Kernel %x "krnl_vdotprod"
+OpEntryPoint Kernel %x "krnl_vmul"
+OpEntryPoint Kernel %x "madd"
+OpEntryPoint Kernel %x "matmul"
+OpEntryPoint Kernel %x "matmul_naive"
+OpEntryPoint Kernel %x "matmul_partition"
+OpEntryPoint Kernel %x "median"
+OpEntryPoint Kernel %x "mmult"
+OpEntryPoint Kernel %x "mscale"
+OpEntryPoint Kernel %x "nearest_neighbor"
+OpEntryPoint Kernel %x "nearest_neighbor_loop_fusion"
+OpEntryPoint Kernel %x "process_image"
+OpEntryPoint Kernel %x "rgb_to_hsv"
+OpEntryPoint Kernel %x "row_array_2d"
+OpEntryPoint Kernel %x "tinyEncryption"
+OpEntryPoint Kernel %x "vadd"
+OpEntryPoint Kernel %x "vadd_pipelined"
+OpEntryPoint Kernel %x "vector_add"
+-- }}}
+
+OpExecutionMode %x LocalSize 1 1 1
+OpExecutionMode %x LocalSize 16 1 1
+
+OpFunctionEnd
+
+OpGroupDecorate %x %x %x
+OpGroupDecorate %x %x %x %x
+OpGroupDecorate %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+
+OpGroupWaitEvents %x %x %x
+
+OpMemoryModel Physical32 OpenCL
+
+-- {{{
+OpName %x ".0"
+OpName %x ".01"
+OpName %x ".1"
+OpName %x "a"
+OpName %x "A"
+OpName %x "a.0"
+OpName %x "acc"
+OpName %x "acc.0"
+OpName %x "acc.1"
+OpName %x "acc.2"
+OpName %x "acc.3"
+OpName %x "acc.i"
+OpName %x "a_col"
+OpName %x "AddRoundKey"
+OpName %x "affine"
+OpName %x "affine_kernel.output_buffer"
+OpName %x "alpha"
+OpName %x "alphabet_to_htree_node"
+OpName %x "alphabet_usage"
+OpName %x "a_row"
+OpName %x "arrayA"
+OpName %x "arrayB"
+OpName %x "arrayC"
+OpName %x "arrayD"
+OpName %x "array_to_bus"
+OpName %x "array_to_uint16"
+OpName %x "b"
+OpName %x "B"
+OpName %x "b.0"
+OpName %x "b_col"
+OpName %x "best_dist.0"
+OpName %x "best_dist.1"
+OpName %x "best_dist.2"
+OpName %x "best_i.0"
+OpName %x "best_i.1"
+OpName %x "best_i.2"
+OpName %x "beta"
+OpName %x "bit"
+OpName %x "bit_reader"
+OpName %x "bits"
+OpName %x "bit_writer"
+OpName %x "block"
+OpName %x "block0.0"
+OpName %x "blockindex.0"
+OpName %x "blocks"
+OpName %x "boost_in"
+OpName %x "boost_input"
+OpName %x "boost_out"
+OpName %x "boost_stage"
+OpName %x "buf"
+OpName %x "buffer"
+OpName %x "buffer0"
+OpName %x "buffer1"
+OpName %x "buffer_in"
+OpName %x "buffer_out"
+OpName %x "bus_to_array"
+OpName %x "bus_to_short"
+OpName %x "bus_to_u8"
+OpName %x "byte"
+OpName %x "bytes_written.0"
+OpName %x "bytes_written.1"
+OpName %x "c"
+OpName %x "C"
+OpName %x "c.0"
+OpName %x "c.1"
+OpName %x "c1.0"
+OpName %x "channel"
+OpName %x "channel.0"
+OpName %x "channel.i.0"
+OpName %x "channel.i10.0"
+OpName %x "child_node"
+OpName %x "chunk_size.0"
+OpName %x "c.i"
+OpName %x "c.i.i"
+OpName %x "C_INVALID_LINK"
+OpName %x "coef"
+OpName %x "coef_buf"
+OpName %x "coeff"
+OpName %x "coeff_reg"
+OpName %x "col.0"
+OpName %x "col3.0"
+OpName %x "col7.0"
+OpName %x "compute"
+OpName %x "compute_add"
+OpName %x "convolution_operation"
+OpName %x "convolution_operation.exit"
+OpName %x "copy_complete"
+OpName %x "copy_output"
+OpName %x "copy_output.exit"
+OpName %x "copy_weight"
+OpName %x "copy_weight.exit"
+OpName %x "count"
+OpName %x "count.0"
+OpName %x "count.1"
+OpName %x "count.2"
+OpName %x "count_bits"
+OpName %x "ctLeaves.0"
+OpName %x "ctLeaves.1"
+OpName %x "ctUnvisited.0"
+OpName %x "current.0"
+OpName %x "current.1"
+OpName %x "current3.0"
+OpName %x "current3.1"
+OpName %x "current3.2"
+OpName %x "current3.3"
+OpName %x "d"
+OpName %x "d.0"
+OpName %x "d1.0"
+OpName %x "dev_sha1_transform"
+OpName %x "dev_sha1_update.lstate"
+OpName %x "dim"
+OpName %x "dim0"
+OpName %x "dim1"
+OpName %x "dist.0"
+OpName %x "dist.1"
+OpName %x "e"
+OpName %x "e.0"
+OpName %x "elements"
+OpName %x "f.0"
+OpName %x "f.1"
+OpName %x "f.2"
+OpName %x "fetch_size_only"
+OpName %x "filter"
+OpName %x "filter_sums"
+OpName %x "find_next_min"
+OpName %x "GALOISMULTIPLICATION_09.exit105.i"
+OpName %x "GALOISMULTIPLICATION_09.exit121.i"
+OpName %x "GALOISMULTIPLICATION_09.exit137.i"
+OpName %x "GALOISMULTIPLICATION_09.exit153.i"
+OpName %x "GALOISMULTIPLICATION_09.exit169.i"
+OpName %x "GALOISMULTIPLICATION_09.exit185.i"
+OpName %x "GALOISMULTIPLICATION_09.exit201.i"
+OpName %x "GALOISMULTIPLICATION_09.exit217.i"
+OpName %x "GALOISMULTIPLICATION_09.exit233.i"
+OpName %x "GALOISMULTIPLICATION_09.exit249.i"
+OpName %x "GALOISMULTIPLICATION_09.exit25.i"
+OpName %x "GALOISMULTIPLICATION_09.exit41.i"
+OpName %x "GALOISMULTIPLICATION_09.exit57.i"
+OpName %x "GALOISMULTIPLICATION_09.exit73.i"
+OpName %x "GALOISMULTIPLICATION_09.exit89.i"
+OpName %x "GALOISMULTIPLICATION_09.exit.i"
+OpName %x "GALOISMULTIPLICATION_11.exit113.i"
+OpName %x "GALOISMULTIPLICATION_11.exit129.i"
+OpName %x "GALOISMULTIPLICATION_11.exit145.i"
+OpName %x "GALOISMULTIPLICATION_11.exit161.i"
+OpName %x "GALOISMULTIPLICATION_11.exit177.i"
+OpName %x "GALOISMULTIPLICATION_11.exit17.i"
+OpName %x "GALOISMULTIPLICATION_11.exit193.i"
+OpName %x "GALOISMULTIPLICATION_11.exit209.i"
+OpName %x "GALOISMULTIPLICATION_11.exit225.i"
+OpName %x "GALOISMULTIPLICATION_11.exit241.i"
+OpName %x "GALOISMULTIPLICATION_11.exit33.i"
+OpName %x "GALOISMULTIPLICATION_11.exit49.i"
+OpName %x "GALOISMULTIPLICATION_11.exit65.i"
+OpName %x "GALOISMULTIPLICATION_11.exit81.i"
+OpName %x "GALOISMULTIPLICATION_11.exit97.i"
+OpName %x "GALOISMULTIPLICATION_13.exit101.i"
+OpName %x "GALOISMULTIPLICATION_13.exit117.i"
+OpName %x "GALOISMULTIPLICATION_13.exit133.i"
+OpName %x "GALOISMULTIPLICATION_13.exit149.i"
+OpName %x "GALOISMULTIPLICATION_13.exit165.i"
+OpName %x "GALOISMULTIPLICATION_13.exit181.i"
+OpName %x "GALOISMULTIPLICATION_13.exit197.i"
+OpName %x "GALOISMULTIPLICATION_13.exit213.i"
+OpName %x "GALOISMULTIPLICATION_13.exit21.i"
+OpName %x "GALOISMULTIPLICATION_13.exit229.i"
+OpName %x "GALOISMULTIPLICATION_13.exit245.i"
+OpName %x "GALOISMULTIPLICATION_13.exit37.i"
+OpName %x "GALOISMULTIPLICATION_13.exit53.i"
+OpName %x "GALOISMULTIPLICATION_13.exit69.i"
+OpName %x "GALOISMULTIPLICATION_13.exit85.i"
+OpName %x "GALOISMULTIPLICATION_13.exit.i"
+OpName %x "GALOISMULTIPLICATION_14.exit109.i"
+OpName %x "GALOISMULTIPLICATION_14.exit125.i"
+OpName %x "GALOISMULTIPLICATION_14.exit13.i"
+OpName %x "GALOISMULTIPLICATION_14.exit141.i"
+OpName %x "GALOISMULTIPLICATION_14.exit157.i"
+OpName %x "GALOISMULTIPLICATION_14.exit173.i"
+OpName %x "GALOISMULTIPLICATION_14.exit189.i"
+OpName %x "GALOISMULTIPLICATION_14.exit205.i"
+OpName %x "GALOISMULTIPLICATION_14.exit221.i"
+OpName %x "GALOISMULTIPLICATION_14.exit237.i"
+OpName %x "GALOISMULTIPLICATION_14.exit29.i"
+OpName %x "GALOISMULTIPLICATION_14.exit45.i"
+OpName %x "GALOISMULTIPLICATION_14.exit61.i"
+OpName %x "GALOISMULTIPLICATION_14.exit77.i"
+OpName %x "GALOISMULTIPLICATION_14.exit93.i"
+OpName %x "GALOISMULTIPLICATION_14.exit.i"
+OpName %x "gbuf"
+OpName %x "getBoost"
+OpName %x "getBoost.exit"
+OpName %x "getBoostWindow"
+OpName %x "getBoostWindow.exit"
+OpName %x "getChannelMedian"
+OpName %x "getChannelMedian.exit"
+OpName %x "getChannelMedian.exit.i"
+OpName %x "get_coef"
+OpName %x "getMedian"
+OpName %x "getMedian.exit"
+OpName %x "getMedianWindow"
+OpName %x "getMedianWindow.exit"
+OpName %x "getSketch"
+OpName %x "g_in"
+OpName %x "gstate"
+OpName %x "height"
+OpName %x "hist"
+OpName %x "hsv"
+OpName %x "ht"
+OpName %x "ht_current.0"
+OpName %x "ht_current.1"
+OpName %x "ht_current.2"
+OpName %x "ht_current.3"
+OpName %x "i"
+OpName %x "i.0"
+OpName %x "i.1"
+OpName %x "i1.0"
+OpName %x "i10.0"
+OpName %x "i12.0"
+OpName %x "i14.0"
+OpName %x "i2.0"
+OpName %x "i2.1"
+OpName %x "i2.i.0"
+OpName %x "i3.0"
+OpName %x "i4.0"
+OpName %x "i5.0"
+OpName %x "i6.0"
+OpName %x "i7.0"
+OpName %x "i7.1"
+OpName %x "i8.0"
+OpName %x "i_affine"
+OpName %x "i_beta"
+OpName %x "i_chan"
+OpName %x "idx_min.0"
+OpName %x "idx_min.1"
+OpName %x "idx_min.2"
+OpName %x "i.i.0"
+OpName %x "i.i.1"
+OpName %x "i.i3.0"
+OpName %x "image"
+OpName %x "image1"
+OpName %x "image2"
+OpName %x "img_input"
+OpName %x "img_lcl"
+OpName %x "img_output"
+OpName %x "in"
+OpName %x "in1"
+OpName %x "in1_lcl"
+OpName %x "in2"
+OpName %x "in2_lcl"
+OpName %x "inc"
+OpName %x "inc_value"
+OpName %x "in_data"
+OpName %x "index"
+OpName %x "index_out_buf.0"
+OpName %x "index_out_buf.1"
+OpName %x "inout"
+OpName %x "in_pixels"
+OpName %x "input"
+OpName %x "input.0"
+OpName %x "input0"
+OpName %x "input_buf"
+OpName %x "input.i.0"
+OpName %x "input_stage"
+OpName %x "int_to_char4"
+OpName %x "inx"
+OpName %x "is_bit_set"
+OpName %x "itr.0"
+OpName %x "itr1.0"
+OpName %x "itr6.0"
+OpName %x "itr.i.0"
+OpName %x "itr.i2.0"
+OpName %x "j.0"
+OpName %x "j.1"
+OpName %x "j1.0"
+OpName %x "j1.i.0"
+OpName %x "j2.0"
+OpName %x "j3.0"
+OpName %x "j3.1"
+OpName %x "j4.0"
+OpName %x "j5.0"
+OpName %x "j6.0"
+OpName %x "j8.0"
+OpName %x "j8.1"
+OpName %x "j.i.0"
+OpName %x "j.i.1"
+OpName %x "j.i4.0"
+OpName %x "k.0"
+OpName %x "k.1"
+OpName %x "k.2"
+OpName %x "k4.0"
+OpName %x "k.i.0"
+OpName %x "krnl_aes_decrypt.roundkeylocal"
+OpName %x "krnl_sobel.GX"
+OpName %x "krnl_sobel.GY"
+OpName %x "l.0"
+OpName %x "lc_node"
+OpName %x "leaf_bitcodes"
+OpName %x "leaf_bitlen"
+OpName %x "leaf_symbols"
+OpName %x "left_child"
+OpName %x "len"
+OpName %x "length"
+OpName %x "line.0"
+OpName %x "lineAddr"
+OpName %x "line_buf"
+OpName %x "linebuf"
+OpName %x "line_reg"
+OpName %x "loc.0"
+OpName %x "loc1.0"
+OpName %x "loc6.0"
+OpName %x "localA"
+OpName %x "localB"
+OpName %x "localC"
+OpName %x "lpts"
+OpName %x "lx"
+OpName %x "ly"
+OpName %x "lz"
+OpName %x "m.0"
+OpName %x "m.1"
+OpName %x "matA"
+OpName %x "matB"
+OpName %x "matmul.A"
+OpName %x "matmul.B"
+OpName %x "matmul.C"
+OpName %x "matmul_naive.A"
+OpName %x "matmul_naive.B"
+OpName %x "matmul_naive.C"
+OpName %x "matmul.temp_sum"
+OpName %x "maxVal.0"
+OpName %x "maxVal.i.0"
+OpName %x "median_input"
+OpName %x "median.linebuf0"
+OpName %x "median.linebuf1"
+OpName %x "median.linebuf2"
+OpName %x "median.lineres"
+OpName %x "median_stage"
+OpName %x "med_in"
+OpName %x "med_out"
+OpName %x "min_usage.0"
+OpName %x "min_usage.1"
+OpName %x "min_usage.2"
+OpName %x "mixColumns16inv.exit"
+OpName %x "mmult.A"
+OpName %x "mmult.B"
+OpName %x "mmult.bufa"
+OpName %x "mmult.bufb"
+OpName %x "mmult.bufc"
+OpName %x "mmult.C"
+OpName %x "mmult.temp_sum"
+OpName %x "msg_len"
+OpName %x "multiple_bits_writer"
+OpName %x "my_input"
+OpName %x "my_keys"
+OpName %x "my_length"
+OpName %x "my_output"
+OpName %x "n.0"
+OpName %x "n.1"
+OpName %x "nbytes.0"
+OpName %x "nbytes.1"
+OpName %x "need_new_node.0"
+OpName %x "need_new_node.1"
+OpName %x "n_elements"
+OpName %x "new_node_on_left.0"
+OpName %x "node"
+OpName %x "node11"
+OpName %x "node13"
+OpName %x "node16"
+OpName %x "node4"
+OpName %x "node5"
+OpName %x "node7"
+OpName %x "node9"
+OpName %x "npoints"
+OpName %x "num_blocks"
+OpName %x "num_vertices"
+OpName %x "o_chan"
+OpName %x "offset.0"
+OpName %x "out"
+OpName %x "out_data"
+OpName %x "out_lcl"
+OpName %x "out_pixels"
+OpName %x "output"
+OpName %x "output.0"
+OpName %x "output0"
+OpName %x "output_stage"
+OpName %x "outx"
+OpName %x "p.0"
+OpName %x "p.1"
+OpName %x "p.2"
+OpName %x "p.3"
+OpName %x "pht"
+OpName %x "pht_current"
+OpName %x "p.i.0"
+OpName %x "p.i.i.0"
+OpName %x "pnode"
+OpName %x "points"
+OpName %x "pptr"
+OpName %x "processed_bitlen.0"
+OpName %x "processed_code.0"
+OpName %x "p_total_bit_count"
+OpName %x "p_total_bits_read"
+OpName %x "ptr"
+OpName %x "ptr.0"
+OpName %x "ptr.1"
+OpName %x "ptr.2"
+OpName %x "ptr.3"
+OpName %x "ptr.4"
+OpName %x "pword"
+OpName %x "r0.i.0"
+OpName %x "r0.i.1"
+OpName %x "r1.i.0"
+OpName %x "r1.i.1"
+OpName %x "r2.i.0"
+OpName %x "r2.i.1"
+OpName %x "r3.i.0"
+OpName %x "r3.i.1"
+OpName %x "rc_node"
+OpName %x "read_data"
+OpName %x "read_ht_node"
+OpName %x "read_input"
+OpName %x "read_word"
+OpName %x "res.0"
+OpName %x "resbuf"
+OpName %x "result"
+OpName %x "result.0"
+OpName %x "result.i.0"
+OpName %x "result.i9.0"
+OpName %x "returnval.i.0"
+OpName %x "returnval.i.1"
+OpName %x "rgb"
+OpName %x "rgbWindow"
+OpName %x "right_child"
+OpName %x "root_node"
+OpName %x "round"
+OpName %x "roundkey"
+OpName %x "roundKey"
+OpName %x "row.0"
+OpName %x "row2.0"
+OpName %x "row6.0"
+OpName %x "rowAddr"
+OpName %x "rsbox"
+OpName %x "scale"
+OpName %x "search_point"
+OpName %x "shift_reg"
+OpName %x "ShiftRowsInv"
+OpName %x "short_to_bus"
+OpName %x "signal"
+OpName %x "signal_length"
+OpName %x "size"
+OpName %x "size.0"
+OpName %x "size_in_data"
+OpName %x "size_out_data"
+OpName %x "sketch_out"
+OpName %x "sketch_stage"
+OpName %x "__spirv_BuiltInGlobalInvocationId"
+OpName %x "__spirv_BuiltInGlobalSize"
+OpName %x "__spirv_BuiltInLocalInvocationId"
+OpName %x "__spirv_BuiltInWorkgroupSize"
+OpName %x "s_point"
+OpName %x "state"
+OpName %x "stk_nodes"
+OpName %x ".str"
+OpName %x ".str1"
+OpName %x "struct.FLAT_HTREE"
+OpName %x "struct.HSVcolor_struct"
+OpName %x "struct.RGBcolor_struct"
+OpName %x "sum"
+OpName %x "sum.0"
+OpName %x "sum.1"
+OpName %x "sum.2"
+OpName %x "sum.3"
+OpName %x "sum.i.0"
+OpName %x "sum.i.1"
+OpName %x "sum.i.2"
+OpName %x "sums"
+OpName %x "sum_scan"
+OpName %x "sumx.0"
+OpName %x "sumx.1"
+OpName %x "sumy.0"
+OpName %x "sumy.1"
+OpName %x "temp.0"
+OpName %x "temp_res"
+OpName %x "temp_sum"
+OpName %x "tinyEncryption.linebufInput"
+OpName %x "tinyEncryption.linebufKeys"
+OpName %x "tinyEncryption.linebufOutput"
+OpName %x "tmp"
+OpName %x "tmp.0"
+OpName %x "top.0"
+OpName %x "top.1"
+OpName %x "top.2"
+OpName %x "total_bitcode_dict_bits.0"
+OpName %x "total_bitcodes_bits.0"
+OpName %x "total_bits_read"
+OpName %x "total_bits_written"
+OpName %x "total_bytes.0"
+OpName %x "total_bytes.1"
+OpName %x "total_payload_bits.0"
+OpName %x "total_payload_bytes"
+OpName %x "u8_to_bus"
+OpName %x "uint16_to_array"
+OpName %x "uint16_to_char_array"
+OpName %x "uint_to_char_array"
+OpName %x "union.bus_to_float_t"
+OpName %x "union.bus_to_short_t"
+OpName %x "union.bus_to_u8_t"
+OpName %x "v0.0"
+OpName %x "v1.0"
+OpName %x "vadd.burstbuffer"
+OpName %x "vadd.result_local"
+OpName %x "vadd.v1_local"
+OpName %x "val"
+OpName %x "value"
+OpName %x "visited"
+OpName %x "w.0"
+OpName %x "weight"
+OpName %x "weights"
+OpName %x "wgt_lcl"
+OpName %x "width"
+OpName %x "word"
+OpName %x "write_data"
+OpName %x "write_ht_node"
+OpName %x "write_result"
+OpName %x "write_word"
+OpName %x "x"
+OpName %x "X"
+OpName %x "x.0"
+OpName %x "x.1"
+OpName %x "x1.0"
+OpName %x "x2.0"
+OpName %x "x2.1"
+OpName %x "x4.0"
+OpName %x "x6.0"
+OpName %x "xVal.0"
+OpName %x "xVal.i.0"
+OpName %x "y"
+OpName %x "Y"
+OpName %x "y.0"
+OpName %x "y.1"
+OpName %x "y3.0"
+OpName %x "y3.1"
+OpName %x "y5.0"
+OpName %x "yVal.0"
+OpName %x "yVal.i.0"
+OpName %x "z"
+OpName %x "Z"
+-- }}}
+
+OpReturn
+
+OpReturnValue %x
+
+OpSource OpenCL_C 200000
+
+OpStore %x %x Aligned 1
+OpStore %x %x Aligned 16
+OpStore %x %x Aligned 2
+OpStore %x %x Aligned 4
+OpStore %x %x Aligned 64
+OpStore %x %x Aligned 8
+
+OpSwitch %x %x 0 %x 1 %x 2 %x 3 %x
+
+%x = OpBitcast %x %x
+
+%x = OpBitwiseAnd %x %x %x
+
+%x = OpBitwiseOr %x %x %x
+
+%x = OpBitwiseXor %x %x %x
+
+%x = OpCompositeExtract %x %x 0
+%x = OpCompositeExtract %x %x 1
+%x = OpCompositeExtract %x %x 10
+%x = OpCompositeExtract %x %x 11
+%x = OpCompositeExtract %x %x 12
+%x = OpCompositeExtract %x %x 13
+%x = OpCompositeExtract %x %x 14
+%x = OpCompositeExtract %x %x 15
+%x = OpCompositeExtract %x %x 2
+%x = OpCompositeExtract %x %x 3
+%x = OpCompositeExtract %x %x 4
+%x = OpCompositeExtract %x %x 5
+%x = OpCompositeExtract %x %x 6
+%x = OpCompositeExtract %x %x 7
+%x = OpCompositeExtract %x %x 8
+%x = OpCompositeExtract %x %x 9
+
+%x = OpCompositeInsert %x %x %x 0
+%x = OpCompositeInsert %x %x %x 1
+%x = OpCompositeInsert %x %x %x 10
+%x = OpCompositeInsert %x %x %x 11
+%x = OpCompositeInsert %x %x %x 12
+%x = OpCompositeInsert %x %x %x 13
+%x = OpCompositeInsert %x %x %x 14
+%x = OpCompositeInsert %x %x %x 15
+%x = OpCompositeInsert %x %x %x 2
+%x = OpCompositeInsert %x %x %x 3
+%x = OpCompositeInsert %x %x %x 4
+%x = OpCompositeInsert %x %x %x 5
+%x = OpCompositeInsert %x %x %x 6
+%x = OpCompositeInsert %x %x %x 7
+%x = OpCompositeInsert %x %x %x 8
+%x = OpCompositeInsert %x %x %x 9
+
+%x = OpConstantComposite %x %x %x %x %x %x %x %x %x %x
+%x = OpConstantComposite %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+%x = OpConstantComposite %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+%x = OpConstantComposite %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+%x = OpConstantComposite %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+%x = OpConstantComposite %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+
+%x = OpConstantFalse %x
+
+%x = OpConstantNull %x
+
+-- {{{
+%x = OpConstant %x 0
+%x = OpConstant %x -0
+%x = OpConstant %x 0.5
+%x = OpConstant %x 1
+%x = OpConstant %x 10
+%x = OpConstant %x 100
+%x = OpConstant %x 1008
+%x = OpConstant %x 101
+%x = OpConstant %x 102
+%x = OpConstant %x 1024
+%x = OpConstant %x 103
+%x = OpConstant %x 104
+%x = OpConstant %x 105
+%x = OpConstant %x 106
+%x = OpConstant %x 107
+%x = OpConstant %x 108
+%x = OpConstant %x 109
+%x = OpConstant %x 11
+%x = OpConstant %x 110
+%x = OpConstant %x 111
+%x = OpConstant %x 112
+%x = OpConstant %x 113
+%x = OpConstant %x 114
+%x = OpConstant %x 115
+%x = OpConstant %x 116
+%x = OpConstant %x 117
+%x = OpConstant %x 118
+%x = OpConstant %x 119
+%x = OpConstant %x 12
+%x = OpConstant %x 120
+%x = OpConstant %x 121
+%x = OpConstant %x 122
+%x = OpConstant %x 123
+%x = OpConstant %x 124
+%x = OpConstant %x 125
+%x = OpConstant %x 126
+%x = OpConstant %x 127
+%x = OpConstant %x 128
+%x = OpConstant %x 129
+%x = OpConstant %x 13
+%x = OpConstant %x 130
+%x = OpConstant %x 131
+%x = OpConstant %x 132
+%x = OpConstant %x 133
+%x = OpConstant %x 134
+%x = OpConstant %x 135
+%x = OpConstant %x 136
+%x = OpConstant %x 137
+%x = OpConstant %x 138
+%x = OpConstant %x 139
+%x = OpConstant %x 14
+%x = OpConstant %x 140
+%x = OpConstant %x 141
+%x = OpConstant %x 142
+%x = OpConstant %x 143
+%x = OpConstant %x 144
+%x = OpConstant %x 145
+%x = OpConstant %x 146
+%x = OpConstant %x 147
+%x = OpConstant %x 148
+%x = OpConstant %x 149
+%x = OpConstant %x 15
+%x = OpConstant %x 150
+%x = OpConstant %x 151
+%x = OpConstant %x 1518500249
+%x = OpConstant %x 152
+%x = OpConstant %x 153
+%x = OpConstant %x 154
+%x = OpConstant %x 155
+%x = OpConstant %x 156
+%x = OpConstant %x 157
+%x = OpConstant %x 158
+%x = OpConstant %x 159
+%x = OpConstant %x 16
+%x = OpConstant %x 160
+%x = OpConstant %x 161
+%x = OpConstant %x 162
+%x = OpConstant %x 163
+%x = OpConstant %x 164
+%x = OpConstant %x 165
+%x = OpConstant %x 166
+%x = OpConstant %x 167
+%x = OpConstant %x 16711680
+%x = OpConstant %x 16711935
+%x = OpConstant %x 168
+%x = OpConstant %x 169
+%x = OpConstant %x 17
+%x = OpConstant %x 170
+%x = OpConstant %x 171
+%x = OpConstant %x 172
+%x = OpConstant %x 173
+%x = OpConstant %x 174
+%x = OpConstant %x 175
+%x = OpConstant %x 176
+%x = OpConstant %x 177
+%x = OpConstant %x 178
+%x = OpConstant %x 179
+%x = OpConstant %x 18
+%x = OpConstant %x 180
+%x = OpConstant %x 181
+%x = OpConstant %x 182
+%x = OpConstant %x 183
+%x = OpConstant %x 184
+%x = OpConstant %x 185
+%x = OpConstant %x 1859775393
+%x = OpConstant %x 186
+%x = OpConstant %x 186624
+%x = OpConstant %x 187
+%x = OpConstant %x 188
+%x = OpConstant %x 189
+%x = OpConstant %x 19
+%x = OpConstant %x 190
+%x = OpConstant %x 191
+%x = OpConstant %x 192
+%x = OpConstant %x 193
+%x = OpConstant %x 194
+%x = OpConstant %x 195
+%x = OpConstant %x 196
+%x = OpConstant %x 197
+%x = OpConstant %x 198
+%x = OpConstant %x 199
+%x = OpConstant %x 2
+%x = OpConstant %x 20
+%x = OpConstant %x 200
+%x = OpConstant %x 201
+%x = OpConstant %x 202
+%x = OpConstant %x 203
+%x = OpConstant %x 204
+%x = OpConstant %x 2048
+%x = OpConstant %x 205
+%x = OpConstant %x 206
+%x = OpConstant %x 207
+%x = OpConstant %x 208
+%x = OpConstant %x 209
+%x = OpConstant %x 21
+%x = OpConstant %x 210
+%x = OpConstant %x 211
+%x = OpConstant %x 212
+%x = OpConstant %x 213
+%x = OpConstant %x 214
+%x = OpConstant %x 2147483647
+%x = OpConstant %x 215
+%x = OpConstant %x 216
+%x = OpConstant %x 217
+%x = OpConstant %x 218
+%x = OpConstant %x 219
+%x = OpConstant %x 22
+%x = OpConstant %x 220
+%x = OpConstant %x 221
+%x = OpConstant %x 222
+%x = OpConstant %x 223
+%x = OpConstant %x 224
+%x = OpConstant %x 225
+%x = OpConstant %x 226
+%x = OpConstant %x 227
+%x = OpConstant %x 228
+%x = OpConstant %x 229
+%x = OpConstant %x 23
+%x = OpConstant %x 230
+%x = OpConstant %x 231
+%x = OpConstant %x 232
+%x = OpConstant %x 233
+%x = OpConstant %x 234
+%x = OpConstant %x 235
+%x = OpConstant %x 236
+%x = OpConstant %x 237
+%x = OpConstant %x 238
+%x = OpConstant %x 239
+%x = OpConstant %x 24
+%x = OpConstant %x 240
+%x = OpConstant %x 2400
+%x = OpConstant %x 2400959708
+%x = OpConstant %x 241
+%x = OpConstant %x 242
+%x = OpConstant %x 243
+%x = OpConstant %x 244
+%x = OpConstant %x 245
+%x = OpConstant %x 246
+%x = OpConstant %x 247
+%x = OpConstant %x 248
+%x = OpConstant %x 249
+%x = OpConstant %x 25
+%x = OpConstant %x 250
+%x = OpConstant %x 251
+%x = OpConstant %x 252
+%x = OpConstant %x 253
+%x = OpConstant %x 254
+%x = OpConstant %x 255
+%x = OpConstant %x 256
+%x = OpConstant %x 26
+%x = OpConstant %x 262144
+%x = OpConstant %x 2654435769
+%x = OpConstant %x 27
+%x = OpConstant %x 272
+%x = OpConstant %x 28
+%x = OpConstant %x 29
+%x = OpConstant %x 3
+%x = OpConstant %x 30
+%x = OpConstant %x 30320
+%x = OpConstant %x 307200
+%x = OpConstant %x 31
+%x = OpConstant %x 3.14159
+%x = OpConstant %x 32
+%x = OpConstant %x 32767
+%x = OpConstant %x 33
+%x = OpConstant %x 3395469782
+%x = OpConstant %x 34
+%x = OpConstant %x 35
+%x = OpConstant %x 36
+%x = OpConstant %x 37
+%x = OpConstant %x 38
+%x = OpConstant %x 39
+%x = OpConstant %x 4
+%x = OpConstant %x 40
+%x = OpConstant %x 4096
+%x = OpConstant %x 40960
+%x = OpConstant %x 41
+%x = OpConstant %x 4194304
+%x = OpConstant %x 42
+%x = OpConstant %x 4278190080
+%x = OpConstant %x 4278255360
+%x = OpConstant %x 4294934528
+%x = OpConstant %x 4294967295
+%x = OpConstant %x 43
+%x = OpConstant %x 44
+%x = OpConstant %x 45
+%x = OpConstant %x 46
+%x = OpConstant %x 47
+%x = OpConstant %x 48
+%x = OpConstant %x 49
+%x = OpConstant %x 5
+%x = OpConstant %x 50
+%x = OpConstant %x 51
+%x = OpConstant %x 512
+%x = OpConstant %x 5120
+%x = OpConstant %x 52
+%x = OpConstant %x 53
+%x = OpConstant %x 54
+%x = OpConstant %x 55
+%x = OpConstant %x 56
+%x = OpConstant %x 57
+%x = OpConstant %x 58
+%x = OpConstant %x 59
+%x = OpConstant %x 6
+%x = OpConstant %x 60
+%x = OpConstant %x 61
+%x = OpConstant %x 614400
+%x = OpConstant %x 62
+%x = OpConstant %x 63
+%x = OpConstant %x 64
+%x = OpConstant %x 640
+%x = OpConstant %x 65
+%x = OpConstant %x 65280
+%x = OpConstant %x 65535
+%x = OpConstant %x 66
+%x = OpConstant %x 67
+%x = OpConstant %x 68
+%x = OpConstant %x 69
+%x = OpConstant %x 69984
+%x = OpConstant %x 7
+%x = OpConstant %x 70
+%x = OpConstant %x 71
+%x = OpConstant %x 72
+%x = OpConstant %x 729
+%x = OpConstant %x 73
+%x = OpConstant %x 74
+%x = OpConstant %x 75
+%x = OpConstant %x 76
+%x = OpConstant %x 77
+%x = OpConstant %x 78
+%x = OpConstant %x 79
+%x = OpConstant %x 8
+%x = OpConstant %x 80
+%x = OpConstant %x 81
+%x = OpConstant %x 8192
+%x = OpConstant %x 82
+%x = OpConstant %x 83
+%x = OpConstant %x 84
+%x = OpConstant %x 85
+%x = OpConstant %x 86
+%x = OpConstant %x 87
+%x = OpConstant %x 88
+%x = OpConstant %x 89
+%x = OpConstant %x 896
+%x = OpConstant %x 9
+%x = OpConstant %x 90
+%x = OpConstant %x 91
+%x = OpConstant %x 92
+%x = OpConstant %x 93
+%x = OpConstant %x 94
+%x = OpConstant %x 95
+%x = OpConstant %x 96
+%x = OpConstant %x 97
+%x = OpConstant %x 98
+%x = OpConstant %x 99
+-- }}}
+
+%x = OpConvertFToS %x %x
+
+%x = OpConvertFToU %x %x
+
+%x = OpConvertSToF %x %x
+
+%x = OpDecorationGroup
+
+%x = OpExtInstImport "OpenCL.std"
+
+%x = OpExtInst %x %x cos %x
+%x = OpExtInst %x %x floor %x
+%x = OpExtInst %x %x printf %x
+%x = OpExtInst %x %x printf %x %x %x %x %x
+%x = OpExtInst %x %x printf %x %x %x %x %x %x
+%x = OpExtInst %x %x sin %x
+%x = OpExtInst %x %x s_min %x %x
+
+%x = OpFAdd %x %x %x
+
+%x = OpFDiv %x %x %x
+
+%x = OpFMul %x %x %x
+
+%x = OpFOrdEqual %x %x %x
+
+%x = OpFSub %x %x %x
+
+%x = OpFunctionCall %x %x %x
+%x = OpFunctionCall %x %x %x %x
+%x = OpFunctionCall %x %x %x %x %x
+%x = OpFunctionCall %x %x %x %x %x %x
+
+%x = OpFunctionParameter %x
+
+%x = OpFunction %x Inline %x
+%x = OpFunction %x None %x
+
+%x = OpGroupAsyncCopy %x %x %x %x %x %x %x
+
+%x = OpIAdd %x %x %x
+
+%x = OpIEqual %x %x %x
+
+%x = OpIMul %x %x %x
+
+%x = OpInBoundsPtrAccessChain %x %x %x
+%x = OpInBoundsPtrAccessChain %x %x %x %x
+
+%x = OpINotEqual %x %x %x
+
+%x = OpISub %x %x %x
+
+%x = OpLabel
+
+%x = OpLoad %x %x
+%x = OpLoad %x %x Aligned 1
+%x = OpLoad %x %x Aligned 16
+%x = OpLoad %x %x Aligned 2
+%x = OpLoad %x %x Aligned 4
+%x = OpLoad %x %x Aligned 64
+%x = OpLoad %x %x Aligned 8
+
+%x = OpPhi %x %x %x %x %x
+%x = OpPhi %x %x %x %x %x %x %x
+%x = OpPhi %x %x %x %x %x %x %x %x %x %x %x
+
+%x = OpPtrCastToGeneric %x %x
+
+%x = OpSConvert %x %x
+
+%x = OpSDiv %x %x %x
+
+%x = OpSelect %x %x %x %x
+
+%x = OpSGreaterThanEqual %x %x %x
+
+%x = OpSGreaterThan %x %x %x
+
+%x = OpShiftLeftLogical %x %x %x
+
+%x = OpShiftRightArithmetic %x %x %x
+
+%x = OpShiftRightLogical %x %x %x
+
+%x = OpSLessThan %x %x %x
+
+%x = OpSRem %x %x %x
+
+%x = OpTypeArray %x %x
+
+%x = OpTypeBool
+
+%x = OpTypeEvent
+
+%x = OpTypeFloat 32
+
+%x = OpTypeFunction %x %x
+%x = OpTypeFunction %x %x %x
+%x = OpTypeFunction %x %x %x %x
+%x = OpTypeFunction %x %x %x %x %x
+%x = OpTypeFunction %x %x %x %x %x %x
+%x = OpTypeFunction %x %x %x %x %x %x %x
+%x = OpTypeFunction %x %x %x %x %x %x %x %x
+
+%x = OpTypeInt 16 0
+%x = OpTypeInt 32 0
+%x = OpTypeInt 64 0
+%x = OpTypeInt 8 0
+
+%x = OpTypePointer CrossWorkgroup %x
+%x = OpTypePointer Function %x
+%x = OpTypePointer Generic %x
+%x = OpTypePointer UniformConstant %x
+%x = OpTypePointer Workgroup %x
+
+%x = OpTypeStruct %x
+%x = OpTypeStruct %x %x %x %x
+%x = OpTypeStruct %x %x %x %x %x %x
+
+%x = OpTypeVector %x 16
+%x = OpTypeVector %x 2
+%x = OpTypeVector %x 3
+%x = OpTypeVector %x 4
+
+%x = OpTypeVoid
+
+%x = OpUConvert %x %x
+
+%x = OpUDiv %x %x %x
+
+%x = OpUGreaterThanEqual %x %x %x
+
+%x = OpUGreaterThan %x %x %x
+
+%x = OpULessThanEqual %x %x %x
+
+%x = OpULessThan %x %x %x
+
+%x = OpUMod %x %x %x
+
+%x = OpUndef %x
+
+%x = OpVariable %x Function
+%x = OpVariable %x Function %x
+%x = OpVariable %x UniformConstant
+%x = OpVariable %x UniformConstant %x
+%x = OpVariable %x Workgroup
+
+%x = OpVectorShuffle %x %x %x 0 1 2
+%x = OpVectorShuffle %x %x %x 0 1 2 3
+%x = OpVectorShuffle %x %x %x 0 1 2 3 16 17 18 19 8 9 10 11 12 13 14 15
+%x = OpVectorShuffle %x %x %x 0 1 2 3 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295
+%x = OpVectorShuffle %x %x %x 0 1 2 3 4 5 6 7 16 17 18 19 12 13 14 15
+%x = OpVectorShuffle %x %x %x 0 1 2 3 4 5 6 7 8 9 10 11 16 17 18 19
+%x = OpVectorShuffle %x %x %x 0 1 2 4294967295
+%x = OpVectorShuffle %x %x %x 10 11 8 9
+%x = OpVectorShuffle %x %x %x 13 14 15 12
+%x = OpVectorShuffle %x %x %x 16 17 18 19 4 5 6 7 8 9 10 11 12 13 14 15
+%x = OpVectorShuffle %x %x %x 7 4 5 6
+

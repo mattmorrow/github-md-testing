@@ -1,0 +1,622 @@
+
+OpCapability Addresses
+OpCapability Float16Buffer
+OpCapability Float64
+OpCapability GenericPointer
+OpCapability ImageBasic
+OpCapability Int16
+OpCapability Int64
+OpCapability Int8
+OpCapability Kernel
+OpCapability Linkage
+OpCapability LiteralSampler
+OpCapability Sampled1D
+OpCapability SampledBuffer
+OpCapability Vector16
+
+OpMemoryModel Physical32 OpenCL
+
+OpSource OpenCL_C 200000
+
+OpExtInstImport (%x=) "OpenCL.std"
+
+OpEntryPoint Kernel %x "<name>"
+
+OpExecutionMode %x LocalSize 1 1 1
+OpExecutionMode %x LocalSize 16 1 1
+OpExecutionMode %x LocalSizeHint 64 1 1
+OpExecutionMode %x VecTypeHint 0
+OpExecutionMode %x VecTypeHint 1
+OpExecutionMode %x VecTypeHint 1048576
+OpExecutionMode %x VecTypeHint 1048577
+OpExecutionMode %x VecTypeHint 1048578
+OpExecutionMode %x VecTypeHint 1048579
+OpExecutionMode %x VecTypeHint 1048581
+OpExecutionMode %x VecTypeHint 1048582
+OpExecutionMode %x VecTypeHint 131072
+OpExecutionMode %x VecTypeHint 131073
+OpExecutionMode %x VecTypeHint 131074
+OpExecutionMode %x VecTypeHint 131075
+OpExecutionMode %x VecTypeHint 131077
+OpExecutionMode %x VecTypeHint 131078
+OpExecutionMode %x VecTypeHint 2
+OpExecutionMode %x VecTypeHint 262144
+OpExecutionMode %x VecTypeHint 262145
+OpExecutionMode %x VecTypeHint 262146
+OpExecutionMode %x VecTypeHint 262147
+OpExecutionMode %x VecTypeHint 262149
+OpExecutionMode %x VecTypeHint 262150
+OpExecutionMode %x VecTypeHint 3
+OpExecutionMode %x VecTypeHint 5
+OpExecutionMode %x VecTypeHint 524288
+OpExecutionMode %x VecTypeHint 524289
+OpExecutionMode %x VecTypeHint 524290
+OpExecutionMode %x VecTypeHint 524291
+OpExecutionMode %x VecTypeHint 524293
+OpExecutionMode %x VecTypeHint 524294
+OpExecutionMode %x VecTypeHint 6
+
+OpName %x "<name>"
+
+OpDecorationGroup (%x=)
+OpDecorate %x Alignment 1
+OpDecorate %x Alignment 128
+OpDecorate %x Alignment 16
+OpDecorate %x Alignment 2
+OpDecorate %x Alignment 32
+OpDecorate %x Alignment 4
+OpDecorate %x Alignment 64
+OpDecorate %x Alignment 8
+OpDecorate %x BuiltIn GlobalInvocationId
+OpDecorate %x BuiltIn GlobalSize
+OpDecorate %x BuiltIn LocalInvocationId
+OpDecorate %x BuiltIn NumWorkgroups
+OpDecorate %x BuiltIn WorkDim
+OpDecorate %x BuiltIn WorkgroupId
+OpDecorate %x BuiltIn WorkgroupSize
+OpDecorate %x Constant
+OpDecorate %x CPacked
+OpDecorate %x FPRoundingMode RTE
+OpDecorate %x FPRoundingMode RTN
+OpDecorate %x FPRoundingMode RTP
+OpDecorate %x FPRoundingMode RTZ
+OpDecorate %x FuncParamAttr ByVal
+OpDecorate %x FuncParamAttr NoAlias
+OpDecorate %x FuncParamAttr NoWrite
+OpDecorate %x FuncParamAttr Sext
+OpDecorate %x FuncParamAttr Sret
+OpDecorate %x FuncParamAttr Zext
+OpDecorate %x LinkageAttributes "<name>" Export
+OpDecorate %x LinkageAttributes "<name>" Import
+OpDecorate %x SaturatedConversion
+OpDecorate %x Volatile
+OpGroupDecorate %x %x %x
+OpGroupDecorate %x %x %x %x
+OpGroupDecorate %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpGroupDecorate %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+
+OpTypeForwardPointer %x Generic
+OpTypeArray (%x=) %x %x
+OpTypeBool (%x=)
+OpTypeEvent (%x=)
+OpTypeFloat (%x=) 16
+OpTypeFloat (%x=) 32
+OpTypeFloat (%x=) 64
+OpTypeFunction (%x=) %x
+OpTypeFunction (%x=) %x %x
+OpTypeFunction (%x=) %x %x %x
+OpTypeFunction (%x=) %x %x %x %x
+OpTypeFunction (%x=) %x %x %x %x %x
+OpTypeFunction (%x=) %x %x %x %x %x %x
+OpTypeFunction (%x=) %x %x %x %x %x %x %x
+OpTypeFunction (%x=) %x %x %x %x %x %x %x %x
+OpTypeFunction (%x=) %x %x %x %x %x %x %x %x %x %x
+OpTypeFunction (%x=) %x %x %x %x %x %x %x %x %x %x %x
+OpTypeFunction (%x=) %x %x %x %x %x %x %x %x %x %x %x %x
+OpTypeImage (%x=) %x 1D 0 0 0 0 Unknown ReadOnly
+OpTypeImage (%x=) %x 1D 0 0 0 0 Unknown WriteOnly
+OpTypeImage (%x=) %x 1D 0 1 0 0 Unknown ReadOnly
+OpTypeImage (%x=) %x 1D 0 1 0 0 Unknown WriteOnly
+OpTypeImage (%x=) %x 2D 0 0 0 0 Unknown ReadOnly
+OpTypeImage (%x=) %x 2D 0 0 0 0 Unknown WriteOnly
+OpTypeImage (%x=) %x 2D 0 1 0 0 Unknown ReadOnly
+OpTypeImage (%x=) %x 2D 0 1 0 0 Unknown WriteOnly
+OpTypeImage (%x=) %x 3D 0 0 0 0 Unknown ReadOnly
+OpTypeImage (%x=) %x Buffer 0 0 0 0 Unknown ReadOnly
+OpTypeImage (%x=) %x Buffer 0 0 0 0 Unknown WriteOnly
+OpTypeInt (%x=) 16 0
+OpTypeInt (%x=) 32 0
+OpTypeInt (%x=) 64 0
+OpTypeInt (%x=) 8 0
+OpTypePointer (%x=) CrossWorkgroup %x
+OpTypePointer (%x=) Function %x
+OpTypePointer (%x=) Generic %x
+OpTypePointer (%x=) UniformConstant %x
+OpTypePointer (%x=) Workgroup %x
+OpTypeSampledImage (%x=) %x
+OpTypeSampler (%x=)
+OpTypeStruct (%x=) %x
+OpTypeStruct (%x=) %x %x
+OpTypeStruct (%x=) %x %x %x
+OpTypeStruct (%x=) %x %x %x %x
+OpTypeStruct (%x=) %x %x %x %x %x
+OpTypeStruct (%x=) %x %x %x %x %x %x
+OpTypeStruct (%x=) %x %x %x %x %x %x %x
+OpTypeStruct (%x=) %x %x %x %x %x %x %x %x %x %x
+OpTypeStruct (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpTypeVector (%x=) %x 16
+OpTypeVector (%x=) %x 2
+OpTypeVector (%x=) %x 3
+OpTypeVector (%x=) %x 4
+OpTypeVector (%x=) %x 8
+OpTypeVoid (%x=)
+
+OpSpecConstantOp %t (%x=) InBoundsPtrAccessChain %x %x %x
+OpConstant %t (%x=) <float>
+OpConstant %t (%x=) <int>
+OpConstantTrue %t (%x=)
+OpConstantFalse %t (%x=)
+OpConstantNull %t (%x=)
+OpConstantComposite %t (%x=) %x %x
+OpConstantComposite %t (%x=) %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpConstantComposite %t (%x=) %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+OpConstantSampler %t (%x=) Clamp 0 Linear
+OpConstantSampler %t (%x=) Clamp 0 Nearest
+OpConstantSampler %t (%x=) Clamp 1 Linear
+OpConstantSampler %t (%x=) Clamp 1 Nearest
+OpConstantSampler %t (%x=) ClampToEdge 0 Linear
+OpConstantSampler %t (%x=) ClampToEdge 0 Nearest
+OpConstantSampler %t (%x=) ClampToEdge 1 Linear
+OpConstantSampler %t (%x=) ClampToEdge 1 Nearest
+OpConstantSampler %t (%x=) None 0 Linear
+OpConstantSampler %t (%x=) None 0 Nearest
+OpConstantSampler %t (%x=) None 1 Linear
+OpConstantSampler %t (%x=) None 1 Nearest
+OpConstantSampler %t (%x=) Repeat 1 Linear
+OpConstantSampler %t (%x=) Repeat 1 Nearest
+OpConstantSampler %t (%x=) RepeatMirrored 1 Linear
+OpConstantSampler %t (%x=) RepeatMirrored 1 Nearest
+
+OpVariable %t (%x=) CrossWorkgroup %x
+OpVariable %t (%x=) Function
+OpVariable %t (%x=) Function %x
+OpVariable %t (%x=) UniformConstant
+OpVariable %t (%x=) UniformConstant %x
+OpVariable %t (%x=) Workgroup
+
+OpFunction %t (%x=) Inline %x
+OpFunction %t (%x=) None %x
+OpFunctionParameter %t (%x=)
+OpFunctionEnd
+
+OpExtInst %t (%x=) %x acosh %x
+OpExtInst %t (%x=) %x acospi %x
+OpExtInst %t (%x=) %x acos %x
+OpExtInst %t (%x=) %x asinh %x
+OpExtInst %t (%x=) %x asinpi %x
+OpExtInst %t (%x=) %x asin %x
+OpExtInst %t (%x=) %x atan2pi %x %x
+OpExtInst %t (%x=) %x atan2 %x %x
+OpExtInst %t (%x=) %x atanh %x
+OpExtInst %t (%x=) %x atanpi %x
+OpExtInst %t (%x=) %x atan %x
+OpExtInst %t (%x=) %x bitselect %x %x %x
+OpExtInst %t (%x=) %x cbrt %x
+OpExtInst %t (%x=) %x ceil %x
+OpExtInst %t (%x=) %x clz %x
+OpExtInst %t (%x=) %x copysign %x %x
+OpExtInst %t (%x=) %x cosh %x
+OpExtInst %t (%x=) %x cospi %x
+OpExtInst %t (%x=) %x cos %x
+OpExtInst %t (%x=) %x cross %x %x
+OpExtInst %t (%x=) %x degrees %x
+OpExtInst %t (%x=) %x distance %x %x
+OpExtInst %t (%x=) %x exp10 %x
+OpExtInst %t (%x=) %x exp2 %x
+OpExtInst %t (%x=) %x expm1 %x
+OpExtInst %t (%x=) %x exp %x
+OpExtInst %t (%x=) %x fabs %x
+OpExtInst %t (%x=) %x fast_distance %x %x
+OpExtInst %t (%x=) %x fast_length %x
+OpExtInst %t (%x=) %x fast_normalize %x
+OpExtInst %t (%x=) %x fclamp %x %x %x
+OpExtInst %t (%x=) %x fdim %x %x
+OpExtInst %t (%x=) %x floor %x
+OpExtInst %t (%x=) %x fma %x %x %x
+OpExtInst %t (%x=) %x fmax %x %x
+OpExtInst %t (%x=) %x fmin %x %x
+OpExtInst %t (%x=) %x fmod %x %x
+OpExtInst %t (%x=) %x fract %x %x
+OpExtInst %t (%x=) %x frexp %x %x
+OpExtInst %t (%x=) %x half_cos %x
+OpExtInst %t (%x=) %x half_divide %x %x
+OpExtInst %t (%x=) %x half_exp10 %x
+OpExtInst %t (%x=) %x half_exp2 %x
+OpExtInst %t (%x=) %x half_exp %x
+OpExtInst %t (%x=) %x half_log10 %x
+OpExtInst %t (%x=) %x half_log2 %x
+OpExtInst %t (%x=) %x half_log %x
+OpExtInst %t (%x=) %x half_powr %x %x
+OpExtInst %t (%x=) %x half_recip %x
+OpExtInst %t (%x=) %x half_rsqrt %x
+OpExtInst %t (%x=) %x half_sin %x
+OpExtInst %t (%x=) %x half_sqrt %x
+OpExtInst %t (%x=) %x half_tan %x
+OpExtInst %t (%x=) %x hypot %x %x
+OpExtInst %t (%x=) %x ilogb %x
+OpExtInst %t (%x=) %x ldexp %x %x
+OpExtInst %t (%x=) %x length %x
+OpExtInst %t (%x=) %x lgamma_r %x %x
+OpExtInst %t (%x=) %x lgamma %x
+OpExtInst %t (%x=) %x log10 %x
+OpExtInst %t (%x=) %x log1p %x
+OpExtInst %t (%x=) %x log2 %x
+OpExtInst %t (%x=) %x logb %x
+OpExtInst %t (%x=) %x log %x
+OpExtInst %t (%x=) %x mad %x %x %x
+OpExtInst %t (%x=) %x maxmag %x %x
+OpExtInst %t (%x=) %x minmag %x %x
+OpExtInst %t (%x=) %x mix %x %x %x
+OpExtInst %t (%x=) %x modf %x %x
+OpExtInst %t (%x=) %x nan %x
+OpExtInst %t (%x=) %x nextafter %x %x
+OpExtInst %t (%x=) %x normalize %x
+OpExtInst %t (%x=) %x popcount %x
+OpExtInst %t (%x=) %x pown %x %x
+OpExtInst %t (%x=) %x powr %x %x
+OpExtInst %t (%x=) %x pow %x %x
+OpExtInst %t (%x=) %x prefetch %x %x
+OpExtInst %t (%x=) %x printf %x
+OpExtInst %t (%x=) %x printf %x %x
+OpExtInst %t (%x=) %x printf %x %x %x %x %x
+OpExtInst %t (%x=) %x printf %x %x %x %x %x %x
+OpExtInst %t (%x=) %x radians %x
+OpExtInst %t (%x=) %x remainder %x %x
+OpExtInst %t (%x=) %x remquo %x %x %x
+OpExtInst %t (%x=) %x rint %x
+OpExtInst %t (%x=) %x rootn %x %x
+OpExtInst %t (%x=) %x rotate %x %x
+OpExtInst %t (%x=) %x round %x
+OpExtInst %t (%x=) %x rsqrt %x
+OpExtInst %t (%x=) %x s_abs_diff %x %x
+OpExtInst %t (%x=) %x s_abs %x
+OpExtInst %t (%x=) %x s_add_sat %x %x
+OpExtInst %t (%x=) %x s_clamp %x %x %x
+OpExtInst %t (%x=) %x select %x %x %x
+OpExtInst %t (%x=) %x s_hadd %x %x
+OpExtInst %t (%x=) %x shuffle2 %x %x %x
+OpExtInst %t (%x=) %x shuffle %x %x
+OpExtInst %t (%x=) %x sign %x
+OpExtInst %t (%x=) %x sincos %x %x
+OpExtInst %t (%x=) %x sinh %x
+OpExtInst %t (%x=) %x sinpi %x
+OpExtInst %t (%x=) %x sin %x
+OpExtInst %t (%x=) %x s_mad24 %x %x %x
+OpExtInst %t (%x=) %x s_mad_hi %x %x %x
+OpExtInst %t (%x=) %x s_mad_sat %x %x %x
+OpExtInst %t (%x=) %x s_max %x %x
+OpExtInst %t (%x=) %x s_min %x %x
+OpExtInst %t (%x=) %x smoothstep %x %x %x
+OpExtInst %t (%x=) %x s_mul24 %x %x
+OpExtInst %t (%x=) %x s_mul_hi %x %x
+OpExtInst %t (%x=) %x sqrt %x
+OpExtInst %t (%x=) %x s_rhadd %x %x
+OpExtInst %t (%x=) %x s_sub_sat %x %x
+OpExtInst %t (%x=) %x step %x %x
+OpExtInst %t (%x=) %x tanh %x
+OpExtInst %t (%x=) %x tanpi %x
+OpExtInst %t (%x=) %x tan %x
+OpExtInst %t (%x=) %x trunc %x
+OpExtInst %t (%x=) %x u_abs_diff %x %x
+OpExtInst %t (%x=) %x u_abs %x
+OpExtInst %t (%x=) %x u_add_sat %x %x
+OpExtInst %t (%x=) %x u_clamp %x %x %x
+OpExtInst %t (%x=) %x u_hadd %x %x
+OpExtInst %t (%x=) %x u_mad24 %x %x %x
+OpExtInst %t (%x=) %x u_mad_hi %x %x %x
+OpExtInst %t (%x=) %x u_mad_sat %x %x %x
+OpExtInst %t (%x=) %x u_max %x %x
+OpExtInst %t (%x=) %x u_min %x %x
+OpExtInst %t (%x=) %x u_mul24 %x %x
+OpExtInst %t (%x=) %x u_mul_hi %x %x
+OpExtInst %t (%x=) %x u_rhadd %x %x
+OpExtInst %t (%x=) %x u_sub_sat %x %x
+OpExtInst %t (%x=) %x u_upsample %x %x
+OpExtInst %t (%x=) %x vloada_halfn %x %x 1
+OpExtInst %t (%x=) %x vloada_halfn %x %x 16
+OpExtInst %t (%x=) %x vloada_halfn %x %x 2
+OpExtInst %t (%x=) %x vloada_halfn %x %x 3
+OpExtInst %t (%x=) %x vloada_halfn %x %x 4
+OpExtInst %t (%x=) %x vloada_halfn %x %x 8
+OpExtInst %t (%x=) %x vload_halfn %x %x 16
+OpExtInst %t (%x=) %x vload_halfn %x %x 2
+OpExtInst %t (%x=) %x vload_halfn %x %x 3
+OpExtInst %t (%x=) %x vload_halfn %x %x 4
+OpExtInst %t (%x=) %x vload_halfn %x %x 8
+OpExtInst %t (%x=) %x vload_half %x %x
+OpExtInst %t (%x=) %x vloadn %x %x 16
+OpExtInst %t (%x=) %x vloadn %x %x 2
+OpExtInst %t (%x=) %x vloadn %x %x 3
+OpExtInst %t (%x=) %x vloadn %x %x 4
+OpExtInst %t (%x=) %x vloadn %x %x 8
+OpExtInst %t (%x=) %x vstorea_halfn_r %x %x %x RTE
+OpExtInst %t (%x=) %x vstorea_halfn_r %x %x %x RTN
+OpExtInst %t (%x=) %x vstorea_halfn_r %x %x %x RTP
+OpExtInst %t (%x=) %x vstorea_halfn_r %x %x %x RTZ
+OpExtInst %t (%x=) %x vstorea_halfn %x %x %x
+OpExtInst %t (%x=) %x vstore_halfn_r %x %x %x RTE
+OpExtInst %t (%x=) %x vstore_halfn_r %x %x %x RTN
+OpExtInst %t (%x=) %x vstore_halfn_r %x %x %x RTP
+OpExtInst %t (%x=) %x vstore_halfn_r %x %x %x RTZ
+OpExtInst %t (%x=) %x vstore_halfn %x %x %x
+OpExtInst %t (%x=) %x vstore_half_r %x %x %x RTE
+OpExtInst %t (%x=) %x vstore_half_r %x %x %x RTN
+OpExtInst %t (%x=) %x vstore_half_r %x %x %x RTP
+OpExtInst %t (%x=) %x vstore_half_r %x %x %x RTZ
+OpExtInst %t (%x=) %x vstore_half %x %x %x
+OpExtInst %t (%x=) %x vstoren %x %x %x
+
+OpAll %t (%x=) %x
+OpAny %t (%x=) %x
+OpAtomicAnd %t (%x=) %x %x %x %x
+OpAtomicCompareExchange %t (%x=) %x %x %x %x %x %x
+OpAtomicExchange %t (%x=) %x %x %x %x
+OpAtomicIAdd %t (%x=) %x %x %x %x
+OpAtomicIDecrement %t (%x=) %x %x %x
+OpAtomicIIncrement %t (%x=) %x %x %x
+OpAtomicISub %t (%x=) %x %x %x %x
+OpAtomicOr %t (%x=) %x %x %x %x
+OpAtomicSMax %t (%x=) %x %x %x %x
+OpAtomicSMin %t (%x=) %x %x %x %x
+OpAtomicUMax %t (%x=) %x %x %x %x
+OpAtomicUMin %t (%x=) %x %x %x %x
+OpAtomicXor %t (%x=) %x %x %x %x
+OpBitcast %t (%x=) %x
+OpBitwiseAnd %t (%x=) %x %x
+OpBitwiseOr %t (%x=) %x %x
+OpBitwiseXor %t (%x=) %x %x
+
+OpBranch %x
+OpBranchConditional %x %x %x
+
+OpCompositeExtract %t (%x=) %x 0
+OpCompositeExtract %t (%x=) %x 1
+OpCompositeExtract %t (%x=) %x 10
+OpCompositeExtract %t (%x=) %x 11
+OpCompositeExtract %t (%x=) %x 12
+OpCompositeExtract %t (%x=) %x 13
+OpCompositeExtract %t (%x=) %x 14
+OpCompositeExtract %t (%x=) %x 15
+OpCompositeExtract %t (%x=) %x 2
+OpCompositeExtract %t (%x=) %x 3
+OpCompositeExtract %t (%x=) %x 4
+OpCompositeExtract %t (%x=) %x 5
+OpCompositeExtract %t (%x=) %x 6
+OpCompositeExtract %t (%x=) %x 7
+OpCompositeExtract %t (%x=) %x 8
+OpCompositeExtract %t (%x=) %x 9
+
+OpCompositeInsert %t (%x=) %x %x 0
+OpCompositeInsert %t (%x=) %x %x 1
+OpCompositeInsert %t (%x=) %x %x 10
+OpCompositeInsert %t (%x=) %x %x 11
+OpCompositeInsert %t (%x=) %x %x 12
+OpCompositeInsert %t (%x=) %x %x 13
+OpCompositeInsert %t (%x=) %x %x 14
+OpCompositeInsert %t (%x=) %x %x 15
+OpCompositeInsert %t (%x=) %x %x 2
+OpCompositeInsert %t (%x=) %x %x 3
+OpCompositeInsert %t (%x=) %x %x 4
+OpCompositeInsert %t (%x=) %x %x 5
+OpCompositeInsert %t (%x=) %x %x 6
+OpCompositeInsert %t (%x=) %x %x 7
+OpCompositeInsert %t (%x=) %x %x 8
+OpCompositeInsert %t (%x=) %x %x 9
+
+OpControlBarrier %x %x %x
+
+OpConvertFToS %t (%x=) %x
+OpConvertFToU %t (%x=) %x
+OpConvertPtrToU %t (%x=) %x
+OpConvertSToF %t (%x=) %x
+OpConvertUToF %t (%x=) %x
+OpFConvert %t (%x=) %x
+
+OpFOrdEqual %t (%x=) %x %x
+OpFOrdGreaterThanEqual %t (%x=) %x %x
+OpFOrdGreaterThan %t (%x=) %x %x
+OpFOrdLessThanEqual %t (%x=) %x %x
+OpFOrdLessThan %t (%x=) %x %x
+
+OpCopyMemorySized %x %x %x Aligned 1
+
+OpDot %t (%x=) %x %x
+
+OpFAdd %t (%x=) %x %x
+
+OpFDiv %t (%x=) %x %x
+
+OpFMul %t (%x=) %x %x
+
+OpFSub %t (%x=) %x %x
+
+OpFunctionCall %t (%x=) %x %x
+OpFunctionCall %t (%x=) %x %x %x
+OpFunctionCall %t (%x=) %x %x %x %x
+OpFunctionCall %t (%x=) %x %x %x %x %x
+
+OpFUnordNotEqual %t (%x=) %x %x
+
+OpGroupAsyncCopy %t (%x=) %x %x %x %x %x %x
+
+OpGroupWaitEvents %x %x %x
+
+OpIAdd %t (%x=) %x %x
+
+OpIEqual %t (%x=) %x %x
+
+OpImageQueryFormat %t (%x=) %x
+
+OpImageQueryOrder %t (%x=) %x
+
+OpImageQuerySizeLod %t (%x=) %x %x
+
+OpImageRead %t (%x=) %x %x
+
+OpImageSampleExplicitLod %t (%x=) %x %x Lod %x
+
+OpIMul %t (%x=) %x %x
+
+OpInBoundsPtrAccessChain %t (%x=) %x %x
+OpInBoundsPtrAccessChain %t (%x=) %x %x %x
+OpInBoundsPtrAccessChain %t (%x=) %x %x %x %x
+
+OpINotEqual %t (%x=) %x %x
+
+OpIsFinite %t (%x=) %x
+
+OpIsInf %t (%x=) %x
+
+OpIsNan %t (%x=) %x
+
+OpIsNormal %t (%x=) %x
+
+OpISub %t (%x=) %x %x
+
+OpLabel (%x=)
+
+OpLessOrGreater %t (%x=) %x %x
+
+OpLoad %t (%x=) %x
+OpLoad %t (%x=) %x Aligned 1
+OpLoad %t (%x=) %x Aligned 128
+OpLoad %t (%x=) %x Aligned 16
+OpLoad %t (%x=) %x Aligned 2
+OpLoad %t (%x=) %x Aligned 32
+OpLoad %t (%x=) %x Aligned 4
+OpLoad %t (%x=) %x Aligned 64
+OpLoad %t (%x=) %x Aligned 8
+OpLoad %t (%x=) %x Volatile|Aligned 4
+
+OpMemoryBarrier %x %x
+
+OpOrdered %t (%x=) %x %x
+
+OpPhi %t (%x=) %x %x %x %x
+OpPhi %t (%x=) %x %x %x %x %x %x
+OpPhi %t (%x=) %x %x %x %x %x %x %x %x %x %x
+
+OpPtrCastToGeneric %t (%x=) %x
+
+OpReturn
+
+OpReturnValue %x
+
+OpSampledImage %t (%x=) %x %x
+
+OpSatConvertSToU %t (%x=) %x
+
+OpSatConvertUToS %t (%x=) %x
+
+OpSConvert %t (%x=) %x
+
+OpSDiv %t (%x=) %x %x
+
+OpSelect %t (%x=) %x %x %x
+
+OpSGreaterThanEqual %t (%x=) %x %x
+
+OpSGreaterThan %t (%x=) %x %x
+
+OpShiftLeftLogical %t (%x=) %x %x
+
+OpShiftRightArithmetic %t (%x=) %x %x
+
+OpShiftRightLogical %t (%x=) %x %x
+
+OpSignBitSet %t (%x=) %x
+
+OpSLessThanEqual %t (%x=) %x %x
+
+OpSLessThan %t (%x=) %x %x
+
+OpSRem %t (%x=) %x %x
+
+OpStore %x %x
+OpStore %x %x Aligned 1
+OpStore %x %x Aligned 128
+OpStore %x %x Aligned 16
+OpStore %x %x Aligned 2
+OpStore %x %x Aligned 32
+OpStore %x %x Aligned 4
+OpStore %x %x Aligned 64
+OpStore %x %x Aligned 8
+OpStore %x %x Volatile|Aligned 4
+
+OpSwitch %x %x 0 %x 1 %x
+OpSwitch %x %x 0 %x 1 %x 2 %x 3 %x
+OpSwitch %x %x 1 %x 0 %x
+OpSwitch %x %x 2 %x 1 %x
+
+OpUConvert %t (%x=) %x
+
+OpUDiv %t (%x=) %x %x
+
+OpUGreaterThanEqual %t (%x=) %x %x
+
+OpUGreaterThan %t (%x=) %x %x
+
+OpULessThanEqual %t (%x=) %x %x
+
+OpULessThan %t (%x=) %x %x
+
+OpUMod %t (%x=) %x %x
+
+OpUndef %t (%x=)
+
+OpUnordered %t (%x=) %x %x
+
+OpVectorExtractDynamic %t (%x=) %x %x
+
+OpVectorShuffle %t (%x=) %x %x 0 0
+OpVectorShuffle %t (%x=) %x %x 0 0 0
+OpVectorShuffle %t (%x=) %x %x 0 0 0 0
+OpVectorShuffle %t (%x=) %x %x 0 0 0 0 0 0 0 0
+OpVectorShuffle %t (%x=) %x %x 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+OpVectorShuffle %t (%x=) %x %x 0 1 2
+OpVectorShuffle %t (%x=) %x %x 0 1 2 3
+OpVectorShuffle %t (%x=) %x %x 0 1 2 3 16 17 18 19 8 9 10 11 12 13 14 15
+OpVectorShuffle %t (%x=) %x %x 0 1 2 3 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295
+OpVectorShuffle %t (%x=) %x %x 0 1 2 3 4 5 6 7 16 17 18 19 12 13 14 15
+OpVectorShuffle %t (%x=) %x %x 0 1 2 3 4 5 6 7 8 9 10 11 16 17 18 19
+OpVectorShuffle %t (%x=) %x %x 0 1 2 4294967295
+OpVectorShuffle %t (%x=) %x %x 10 11 8 9
+OpVectorShuffle %t (%x=) %x %x 13 14 15 12
+OpVectorShuffle %t (%x=) %x %x 16 17 18 19 4 5 6 7 8 9 10 11 12 13 14 15
+OpVectorShuffle %t (%x=) %x %x 4 5 6 3
+OpVectorShuffle %t (%x=) %x %x 7 4 5 6
+
